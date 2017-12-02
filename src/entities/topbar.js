@@ -21,14 +21,18 @@ class TopBar extends Phaser.Group {
             backgroundColor: 'rgba(255, 255, 255, 0)'
         };
 
-        this._text = new Phaser.Text(game, -10, 5, "56", Object.assign(style));
-        this._sprite = new Phaser.Sprite(game, 40, 5, "alien");
-
+        this.text = new Phaser.Text(game, game.width / 6 + 25, 29, "56", Object.assign(style));
+        this.text.anchor.setTo(0.5);
 
         
         this.add(graphics);
         this.add(cristal);
+        this.add(this.text);
         
+    }
+
+    update() {
+        this.text.text = this.vaisseau.cristaux;
     }
 }
 
