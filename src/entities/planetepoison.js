@@ -1,8 +1,7 @@
 class PlanetePoison extends Filon {
 	constructor(game, x, y, vaisseau){
-		super(game, x, y, "planete_poison", vaisseau);
+		super(game, x, y, "planete_poison", vaisseau, game.rnd.integerInRange(100, 400));
 
-		this.quantite = this.game.rnd.integerInRange(100, 400);
 		this.aliensPositionX -= 15;
 		//this.scale.setTo(2);
 	}
