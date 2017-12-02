@@ -18,7 +18,7 @@ class LoadState extends Phaser.State {
         this.game.load.image("alien", "assets/alien.png");
         this.game.load.image("vaisseau-mere", "assets/vaisseau-mere.png");
         this.game.load.image("space", "assets/space.png");
-        // this.game.load.image("blue", "assets/blue.png");
+        this.game.load.image("white", "assets/white.png");
        
     }
 

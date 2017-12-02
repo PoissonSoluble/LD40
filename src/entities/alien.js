@@ -42,7 +42,6 @@ class Alien extends Phaser.Sprite{
 		
 	}
 
-
 	setCible(newCible){
 		this.dansVaisseau = false;
 		this.cible = newCible;

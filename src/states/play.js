@@ -11,7 +11,7 @@ class PlayState extends Phaser.State {
         
 
         
-        
+        this._topbar = new TopBar(game);
         
         this._alien = new Alien(game, this._vaisseau, this._filons)
         this._vaisseau.addAlien(this._alien)
@@ -19,7 +19,7 @@ class PlayState extends Phaser.State {
 
         this.filonInterval = setInterval(() => {
             let x = this.game.rnd.integerInRange(0, this.game.width);
-            let y = this.game.rnd.integerInRange(0, this.game.height);
+            let y = this.game.rnd.integerInRange(60, this.game.height);
             this._filons.ajouterCristal(x,y,this._vaisseau);
         }, 2000);
 
