@@ -8,6 +8,7 @@ class LoadState extends Phaser.State {
         // let logo = this.game.add.sprite(this.game.width / 2, this.game.height / 2, 'logo');
         // logo.anchor.setTo(0.5,0.5);
         // logo.width = logo.height = Math.min(this.game.width, this.game.height);
+        this.game.load.image("cristal", "assets/cristal.png");
 
         this.interval = setInterval(LoadState.prototype.checkIfLoaded.bind(this), 500);
 
