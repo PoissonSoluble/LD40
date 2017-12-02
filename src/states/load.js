@@ -15,6 +15,9 @@ class LoadState extends Phaser.State {
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.game.load.image("cristal", "assets/cristal.png");
         this.game.load.image("gros_cristal", "assets/gros_cristal.png");
+        this.game.load.image("planete_bleu", "assets/planete_bleu.png");
+        this.game.load.image("planete_poison", "assets/planete_poison.png");
+        this.game.load.image("planete_desert", "assets/planete_desert.png");
         this.game.load.image("cristal_ressource", "assets/cristal_ressource.png");
         this.game.load.image("vaisseau", "assets/vaisseau.png");
         this.game.load.image("alien", "assets/alien.png");

@@ -7,7 +7,7 @@ class Vaisseau extends Phaser.Group {
      */
 
     constructor(game, filons, x, y) {
-        super(game );
+        super(game);
 
         this.x = x;
         this.y = y;
