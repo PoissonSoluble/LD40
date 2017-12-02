@@ -23,7 +23,7 @@ class PlayState extends Phaser.State {
             this._filons.ajouterCristal(x,y,this._vaisseau);
         }, 2000);
 
-        this._vaisseau.emitter.on('gameover', () => window.location.reload())
+        this._vaisseau.emitter.on('gameover', () => { this.game.paused= true; window.location.reload(); })
 
 
         

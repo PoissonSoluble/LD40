@@ -3,5 +3,6 @@ class Cristal extends Filon {
 		super(game, x, y, "cristal", vaisseau);
 		this.quantite = 10;
 		this.aliensPositionX -= 10;
+		this.scale.setTo(2)
 	}
 }

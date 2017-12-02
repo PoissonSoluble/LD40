@@ -11,7 +11,7 @@ class Alien extends Phaser.Sprite{
 		this.cibleAtteinte = true;
 		this.dansVaisseau = true;
 		this.filons = filons;
-		this.scale.setTo(0.15);
+		this.scale.setTo(0.3);
 		game.add.existing(this);
 	}
 
@@ -52,19 +52,31 @@ class Alien extends Phaser.Sprite{
 
 		let cristauxAMiner = Math.min(cible.quantite, this.capacite)
 		let i;
-		for (i = 1; i<=cristauxAMiner; i++)
-		{
-			setTimeout(()=> {
-					this.nbCristaux+=this.filons.prelever(cible,1);
 
-			}, 1000 * i);
-		}
-
-		setTimeout(()=> 
+		let returnHome = ()=> 
 		{
 			cible.removeAlien(this);
 			this.setCible(this.vaisseau);
-		}, 1000 * (i-1));
+		};
+
+		let returnHomeTimeout =  setTimeout(returnHome, 1000 *cristauxAMiner);
+
+		for (i = 1; i<=cristauxAMiner; i++)
+		{
+			setTimeout(()=> {
+					
+				if(cible.quantite === 0 && returnHomeTimeout) {
+					returnHome();
+					returnHomeTimeout = null;
+				} else {
+					this.nbCristaux+=this.filons.prelever(cible,1);
+				}
+				
+					
+			}, 1000 * i);
+		}
+
+		
 	}
 
 	entrerVaisseau(){

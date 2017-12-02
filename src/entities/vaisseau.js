@@ -13,6 +13,7 @@ class Vaisseau extends Phaser.Group {
         this.y = y;
         this._sprite = new Phaser.Sprite(game, 0, 0, 'vaisseau-mere');
         this._sprite.anchor.set(0.5);
+        this._sprite.scale.setTo(1.5)
         
         this._alienQueue = new Queue();
         this._capacity = Data.INITIAL_CAPACITY;

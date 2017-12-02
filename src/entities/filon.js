@@ -57,8 +57,8 @@ class Filon extends Phaser.Sprite{
 
 		for(const j of this.aliens) {
 			
-			var x = Math.sin(theta/100) * 20;
-			var y = Math.cos(theta/100) * 20;
+			var x = Math.sin(theta/100) * 50;
+			var y = Math.cos(theta/100) * 50;
 			
 			j.angle=(Phaser.Math.angleBetween(j.x, j.y, this.x + x, this.y + y) * Phaser.Math.RAD_TO_DEG);
 			
