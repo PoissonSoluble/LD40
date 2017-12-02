@@ -3,7 +3,7 @@ class Filon extends Phaser.Sprite{
 		super(game, x, y, type);
 		this.x = x;
 		this.y = y;
-		this.anchor.set(0.5);
+		this.anchor.setTo(0.5);
 		this.quantite = 0;
 		this.inputEnabled = true;
 		this.events.onInputDown.add(Filon.prototype.onClick.bind(this));
