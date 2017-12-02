@@ -4,7 +4,7 @@ class Filon extends Phaser.Sprite{
 		this.x = x;
 		this.y = y;
 
-		this.framebitch = 1;
+		this.timeAnim = 1;
 
 		this.anchor.setTo(0.5);
 
@@ -48,7 +48,7 @@ class Filon extends Phaser.Sprite{
 	}
 
 	update(){
-		var theta = this.framebitch;
+		var theta = this.timeAnim;
 		var delta = ((Math.sin((this.framebitch)/10)+1)/2) * 20 - 10;
 
 		for(const j of this.aliens) {
@@ -60,10 +60,9 @@ class Filon extends Phaser.Sprite{
 			j.y=this.y + y;
 			j.angle=(theta/100)*(Math.PI*2/180) + delta;
 			theta+=30;
-			console.log("wesh" + j.x + " " + j.y + " " + this.framebitch)
 		}
 
-		this.framebitch++;
+		this.timeAnim++;
 
 	}
 }

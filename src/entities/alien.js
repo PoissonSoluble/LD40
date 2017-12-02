@@ -10,11 +10,15 @@ class Alien extends Phaser.Sprite{
 		this.vaisseau = vaisseau;
 		this.filons = filons;
 		this.cibleAtteinte = true;
+		this.dansVaisseau = true;
+
+		this.vaisseau.pushAlien(this);
 	}
 
 
 	update() {
 		if(this.cible && this.cibleAtteinte == false) {
+			this.visible = true;
 			if(this.x == this.cible.x && this.y == this.cible.y){
 				this.cibleAtteinte = true;
 				this.cible.addAlien(this);
@@ -24,12 +28,16 @@ class Alien extends Phaser.Sprite{
 				this.y+=Math.sin(angle);
 			}
 		}
+		else if (this.dansVaisseau)
+		{
+			this.visible = false; 
+		}
 		
 	}
 
 
 	setCible(newCible){
-
+		this.dansVaisseau = false;
 		this.cible = newCible;
 		this.cibleAtteinte = false;
 	}
@@ -39,8 +47,9 @@ class Alien extends Phaser.Sprite{
 		let cristauxAMiner = Math.min(cible.quantite, this.capacite)
 		for (let i = 0; i<cristauxAMiner; i++)
 		{
-			setTimeout(()=> {
-					this.nbCristaux+=this.filons.prelever(cible,1);
+			setTimeout(()=> 
+			{
+				this.nbCristaux+=this.filons.prelever(cible,1);
 
 			}, 1000);
 		}
@@ -49,6 +58,14 @@ class Alien extends Phaser.Sprite{
 	}
 
 
+
+	entrerVaisseau(){
+
+		this.vaisseau.pushAlien(this);
+		this.dansVaisseau = true;
+		this.cible = null;
+
+	}
 
 
 
