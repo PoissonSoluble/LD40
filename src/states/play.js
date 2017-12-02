@@ -2,7 +2,7 @@ class PlayState extends Phaser.State {
 
     
     create() {
-        
+        this._vaisseau = new Vaisseau(this.game, 100, 100);
     }
 
 
