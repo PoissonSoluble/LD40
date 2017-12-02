@@ -11,7 +11,7 @@ class PlayState extends Phaser.State {
         
 
         
-        this._topbar = new TopBar(game);
+        this._topbar = new TopBar(game,this._vaisseau);
         
         this._alien = new Alien(game, this._vaisseau, this._filons)
         this._vaisseau.addAlien(this._alien)
