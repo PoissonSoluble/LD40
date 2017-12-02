@@ -28,7 +28,7 @@ class Alien extends Phaser.Sprite{
 				this.y+=Math.sin(angle);
 			}
 		}
-		else if (this.dansVaisseau)
+		else if(this.dansVaisseau)
 		{
 			this.visible = false; 
 		}
@@ -45,16 +45,21 @@ class Alien extends Phaser.Sprite{
 	miner(cible) {
 
 		let cristauxAMiner = Math.min(cible.quantite, this.capacite)
-		for (let i = 0; i<cristauxAMiner; i++)
+		let i;
+		for (i = 1; i<=cristauxAMiner; i++)
 		{
 			setTimeout(()=> 
 			{
 				this.nbCristaux+=this.filons.prelever(cible,1);
 
-			}, 1000);
+			}, 1000 * i);
 		}
 
-		setCible(this.vaisseau);
+		setTimeout(()=> 
+		{
+			cible.removeAlien(this);
+			this.setCible(this.vaisseau);
+		}, 1000 * i);
 	}
 
 

@@ -23,6 +23,11 @@ class Filon extends Phaser.Sprite{
 
 	addAlien(alien){
 		this.aliens.push(alien);
+		alien.miner(this);
+	}
+
+	removeAlien(alien){
+		this.aliens.splice(this.aliens.indexOf(alien), 1);
 	}
 
 	estVide(){
