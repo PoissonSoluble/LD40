@@ -11,6 +11,7 @@ class Filon extends Phaser.Group{
 
 		this.sprite.inputEnabled = true;
 		this.sprite.events.onInputDown.add(Filon.prototype.onClick.bind(this));
+		this.sprite.scale.setTo(2);
 
 		this.vaisseau = vaisseau;
 
@@ -20,7 +21,11 @@ class Filon extends Phaser.Group{
 		this.aliensPositionX = this.x;
 		this.aliensPositionX = this.y;
 
+        this._indicateur = new IndicateurCristaux(this.game, 0, 0);
+
 		this.add(this.sprite);
+        this.add(this._indicateur);
+
 
 	}
 
@@ -73,6 +78,7 @@ class Filon extends Phaser.Group{
 		}
 
 		this.timeAnim++;
+		this._indicateur.setValues(this.quantite);
 
 	}
 }
