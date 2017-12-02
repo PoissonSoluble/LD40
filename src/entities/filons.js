@@ -2,7 +2,6 @@ class Filons extends Phaser.Group{
 	
 	constructor(game){
 		super(game);
-
 	}
 
 	ajouterCristal(x, y, vaisseau){

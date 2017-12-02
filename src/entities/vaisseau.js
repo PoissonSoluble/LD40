@@ -60,7 +60,7 @@ class Vaisseau extends Phaser.Group {
         let cloneInterval = setInterval(() => {
             let alien = new Alien(this.game, this, this.filons, this.x, this.y);
             this.addAlien(alien);
-        }, 3000);
+        }, 10000);
 
         this._aliensToIntervals.set(alien, cloneInterval);
     }

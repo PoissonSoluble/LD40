@@ -10,7 +10,7 @@ class Alien extends Phaser.Sprite{
 		this.vaisseau = vaisseau;
 		this.cibleAtteinte = true;
 		this.dansVaisseau = true;
-		this.filons=filons;
+		this.filons = filons;
 		game.add.existing(this);
 	}
 
@@ -31,7 +31,6 @@ class Alien extends Phaser.Sprite{
 		{
 			this.visible = false; 
 		}
-
 
 		if(Phaser.Math.distance(this.x, this.y, this.vaisseau.x, this.vaisseau.y) < 100) {
 			this.alpha = 0.5;
