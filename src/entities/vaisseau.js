@@ -11,16 +11,18 @@ class Vaisseau extends Phaser.Group {
 
         this.x = x;
         this.y = y;
+        this._sprite = new Phaser.Sprite(game, 0, 0, 'vaisseau');
         this._alienQueue = new Queue();
         this._capacity = Data.INITIAL_CAPACITY;
-        this._nbAliensText = new Phaser.Text(game, 0, 0, "", { 
+        this._nbAliensText = new Phaser.Text(game, this._sprite.width / 2, 0, "", { 
             font: "50px arial", 
             fontWeight: 'bold',
             fill: "#ffffff", 
             align: "center"
         });
         this._emitter = new EventEmitter;
-        this.add(this._nbAliensText)
+        this.add(this._sprite);
+        this.add(this._nbAliensText);
     }
     
     get emitter() {

@@ -13,7 +13,7 @@ class LoadState extends Phaser.State {
 
 
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        // this.game.load.image("carlier", "assets/carlier.png");
+        this.game.load.image("vaisseau", "assets/vaisseau.png");
         // this.game.load.image("blue", "assets/blue.png");
        
     }
