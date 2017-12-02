@@ -4,6 +4,5 @@ class Cristal extends Filon {
 
 		this.quantite = ~~( Math.random() * (50 - 1) + 1);
 		this.aliensPositionX -= 10;
-		this.scale.setTo(2)
 	}
 }
