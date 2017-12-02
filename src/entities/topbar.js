@@ -10,8 +10,9 @@ class TopBar extends Phaser.Group {
         graphics.height = 50;
         graphics.alpha = 0.1;
 
-        let cristal = new Phaser.Sprite(game, game.width / 6, 25, 'cristal');
+        let cristal = new Phaser.Sprite(game, game.width / 6, 25, 'cristal_ressource');
         cristal.width = cristal.height = 40;
+        cristal.scale.setTo(2);
         cristal.anchor.setTo(0.5);
 
         let style = { 
@@ -21,7 +22,7 @@ class TopBar extends Phaser.Group {
             backgroundColor: 'rgba(255, 255, 255, 0)'
         };
 
-        this.text = new Phaser.Text(game, game.width / 6 + 25, 29, "56", Object.assign(style));
+        this.text = new Phaser.Text(game, game.width / 6 + 30, 29, "56", Object.assign(style));
         this.text.anchor.setTo(0.5);
 
         
