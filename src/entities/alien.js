@@ -1,7 +1,7 @@
 class Alien extends Phaser.Sprite{
 
 	constructor(game, vaisseau, filons, x=0, y=0) {
-		super(game, x || vaisseau.x, y || vaisseau.y,  "alien");
+		super(game, x || vaisseau.x, y || vaisseau.y,  "vaisseau");
 		this.anchor.setTo(0.5);
 		this.capacite = 5;
 		this.nbCristaux = 0;
@@ -11,6 +11,7 @@ class Alien extends Phaser.Sprite{
 		this.cibleAtteinte = true;
 		this.dansVaisseau = true;
 		this.filons = filons;
+		this.scale.setTo(0.1);
 		game.add.existing(this);
 	}
 
@@ -23,6 +24,7 @@ class Alien extends Phaser.Sprite{
 				this.cible.addAlien(this);
 			}else{
 				let angle = Phaser.Math.angleBetween(this.x, this.y, this.cible.x, this.cible.y);
+				this.angle = angle * Phaser.Math.RAD_TO_DEG;
 				this.x+=10*Math.cos(angle);
 				this.y+=10*Math.sin(angle);
 			}
