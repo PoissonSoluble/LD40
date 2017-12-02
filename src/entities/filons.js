@@ -14,7 +14,7 @@ class Filons extends Phaser.Group{
 		q = filon.prelever(q);
 
 		if(filon.estVide()){
-			this.remove(filon);
+			this.remove(filon, true);
 		}
 
 		return q;

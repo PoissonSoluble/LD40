@@ -1,14 +1,16 @@
-class Filon extends Phaser.Sprite{
+class Filon extends Phaser.Group{
 	constructor(game, x, y, type, vaisseau){
-		super(game, x, y, type);
+		super(game);
 		this.x = x;
 		this.y = y;
 
-		this.timeAnim = 1;
-		this.anchor.setTo(0.5);
+		this.sprite = new Phaser.Sprite(game, 0, 0, type);
 
-		this.inputEnabled = true;
-		this.events.onInputDown.add(Filon.prototype.onClick.bind(this));
+		this.timeAnim = 1;
+		this.sprite.anchor.setTo(0.5);
+
+		this.sprite.inputEnabled = true;
+		this.sprite.events.onInputDown.add(Filon.prototype.onClick.bind(this));
 
 		this.vaisseau = vaisseau;
 
@@ -17,6 +19,8 @@ class Filon extends Phaser.Sprite{
 		this.aliens = [];
 		this.aliensPositionX = this.x;
 		this.aliensPositionX = this.y;
+
+		this.add(this.sprite);
 
 	}
 
