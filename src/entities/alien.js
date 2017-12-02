@@ -67,6 +67,7 @@ class Alien extends Phaser.Sprite{
 					
 				if(cible.quantite === 0 && returnHomeTimeout) {
 					returnHome();
+					clearTimeout(returnHomeTimeout);
 					returnHomeTimeout = null;
 				} else {
 					this.nbCristaux+=this.filons.prelever(cible,1);
