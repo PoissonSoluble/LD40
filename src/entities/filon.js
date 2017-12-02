@@ -6,7 +6,7 @@ class Filon extends Phaser.Sprite{
 		this.anchor.set(0.5);
 		this.quantite = 0;
 		this.inputEnabled = true;
-		this.events.onInputDown.add(Filon prototype.onClick.bind(this));
+		this.events.onInputDown.add(Filon.prototype.onClick.bind(this));
 		this.vaisseau = vaisseau;
 	}
 
