@@ -11,7 +11,7 @@ class Alien extends Phaser.Sprite{
 		this.cibleAtteinte = true;
 		this.dansVaisseau = true;
 		this.filons = filons;
-		this.scale.setTo(0.1);
+		this.scale.setTo(0.15);
 		game.add.existing(this);
 	}
 
