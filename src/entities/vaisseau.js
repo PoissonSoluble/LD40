@@ -6,7 +6,7 @@ class Vaisseau extends Phaser.Group {
      *      gameover
      */
 
-    constructor(game, x, y) {
+    constructor(game, filons, x, y) {
         super(game );
 
         this.x = x;
@@ -22,9 +22,12 @@ class Vaisseau extends Phaser.Group {
             fill: "#ffffff", 
             align: "center"
         });
+        this.filons = filons;
         this._emitter = new EventEmitter;
         this.add(this._sprite);
         this.add(this._nbAliensText);
+
+        this._aliensToIntervals = new WeakMap;
     }
     
     get emitter() {
@@ -45,11 +48,20 @@ class Vaisseau extends Phaser.Group {
 
 
     popAlien() {
-        return this._alienQueue.dequeue();
+        console.log('popalien')
+        let alien = this._alienQueue.dequeue();
+        clearInterval(this._aliensToIntervals.get(alien));
+        return alien;
     }
 
-    pushAlien(alien) {
+    addAlien(alien) {
         this._alienQueue.enqueue(alien);
+        let cloneInterval = setInterval(() => {
+            let alien = new Alien(this.game, this, this.filons, this.x, this.y);
+            this.addAlien(alien);
+        }, 3000);
+
+        this._aliensToIntervals.set(alien, cloneInterval);
     }
 
 

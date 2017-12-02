@@ -5,7 +5,6 @@ class Filon extends Phaser.Sprite{
 		this.y = y;
 
 		this.timeAnim = 1;
-
 		this.anchor.setTo(0.5);
 
 		this.inputEnabled = true;
