@@ -1,21 +1,27 @@
 class IndicateurVaisseau extends Phaser.Group {
-    constructor(game) {
+    constructor(game, x, y) {
         super(game);
-
+        this.x = x;
+        this.y = y;
         let style = { 
-            font: "50px arial", 
-            fontWeight: 'bold',
+            font: "20px arial", 
             fill: "#ffffff", 
-            align: "center",
-            backgroundColor: 'cyan'
+            align: "right",
+            backgroundColor: 'rgba(255, 255, 255, 0)'
         };
 
-        this._currentText = new Phaser.Text(game, 0, 0, "", Object.assign(style, {fill: "black"}));
-        this._maxText = new Phaser.Text(game, 20, 0, "", Object.assign(style, {fill: "red"}));
+        this._text = new Phaser.Text(game, -10, 5, "56", Object.assign(style));
+        this._sprite = new Phaser.Sprite(game, 40, 5, "alien");
+        this._sprite.scale.setTo(2)
+        this._sprite.anchor.setTo(0.5)
+        this._text.anchor.setTo(0.5)
+        
+
+        this.add(this._text);
+        this.add(this._sprite);
     }
 
     setValues(current, max) {
-        this._currentText.text = current + " / ";
-        this._maxText.text = max;
+        this._text.text = " " + current + " / " + max + "\t ";
     }
 }

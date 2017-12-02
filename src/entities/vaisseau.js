@@ -16,16 +16,10 @@ class Vaisseau extends Phaser.Group {
         
         this._alienQueue = new Queue();
         this._capacity = Data.INITIAL_CAPACITY;
-        this._nbAliensText = new Phaser.Text(game, this._sprite.width / 2, 0, "", { 
-            font: "50px arial", 
-            fontWeight: 'bold',
-            fill: "#ffffff", 
-            align: "center"
-        });
         this.filons = filons;
         this._emitter = new EventEmitter;
         this.add(this._sprite);
-        this.add(this._nbAliensText);
+        this._indicateur = new IndicateurVaisseau(this.game, this.x, this.y);
 
         this._aliensToIntervals = new WeakMap;
     }
@@ -39,7 +33,7 @@ class Vaisseau extends Phaser.Group {
         if(this.isCapacityExceeded()) {
             this.emitter.emit('gameover');
         }
-        this._nbAliensText.text = this._alienQueue.getLength();
+        this._indicateur.setValues(this._alienQueue.getLength(), this._capacity);
     }
 
     isCapacityExceeded() {
