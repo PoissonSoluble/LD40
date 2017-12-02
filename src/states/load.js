@@ -2,7 +2,7 @@ class LoadState extends Phaser.State {
 
 
     preload() {
-        this.game.stage.backgroundColor = '#87e33a';
+        this.game.stage.backgroundColor = '#33f';
         this.loaded = false;
 
         // let logo = this.game.add.sprite(this.game.width / 2, this.game.height / 2, 'logo');
@@ -14,6 +14,7 @@ class LoadState extends Phaser.State {
 
         this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         this.game.load.image("vaisseau", "assets/vaisseau.png");
+        this.game.load.image("alien", "assets/alien.png");
         // this.game.load.image("blue", "assets/blue.png");
        
     }

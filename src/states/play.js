@@ -2,7 +2,9 @@ class PlayState extends Phaser.State {
 
     
     create() {
-        this._vaisseau = new Vaisseau(this.game, 100, 100);
+        this._vaisseau = new Vaisseau(this.game, 500, 200);
+        this._alien = new Alien(game, this._vaisseau , { prelever:() => {} })
+        this.game.add.existing(this._alien)
     }
 
 

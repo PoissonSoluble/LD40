@@ -12,6 +12,8 @@ class Vaisseau extends Phaser.Group {
         this.x = x;
         this.y = y;
         this._sprite = new Phaser.Sprite(game, 0, 0, 'vaisseau');
+        this._sprite.anchor.set(0.5);
+        
         this._alienQueue = new Queue();
         this._capacity = Data.INITIAL_CAPACITY;
         this._nbAliensText = new Phaser.Text(game, this._sprite.width / 2, 0, "", { 
