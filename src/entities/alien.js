@@ -64,19 +64,13 @@ class Alien extends Phaser.Sprite{
 		{
 			cible.removeAlien(this);
 			this.setCible(this.vaisseau);
-		}, 1000 * i);
+		}, 1000 * (i-1));
 	}
-
-
 
 	entrerVaisseau(){
-		console.log('entrer')
-		this.vaisseau.addAlien(this);
 		this.dansVaisseau = true;
 		this.cible = null;
-
+		this.vaisseau.cristaux += this.nbCristaux;
+		this.nbCristaux = 0;
 	}
-
-
-
 }
