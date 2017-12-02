@@ -3,7 +3,7 @@ class PlayState extends Phaser.State {
     
     create() {
         this._filons = new Filons(this.game);
-        this._vaisseau = new Vaisseau(this.game, this._filons, 500, 200);
+        this._vaisseau = new Vaisseau(this.game, this._filons, this.game.width / 2, this.game.height / 2);
         
 
         
@@ -18,6 +18,8 @@ class PlayState extends Phaser.State {
             let y = this.game.rnd.integerInRange(0, this.game.height);
             this._filons.ajouterCristal(x,y,this._vaisseau);
         }, 2000);
+
+        this._vaisseau.emitter.on('gameover', () => window.location.reload())
 
 
         
