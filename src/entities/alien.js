@@ -18,7 +18,7 @@ class Alien extends Phaser.Sprite{
 		this.events.onInputDown.add(() => this.emitter.emit('clicked'));
 
 		this.timer = game.time.create(false);
-        this.timer.loop(900, Alien.prototype.diggyDiggy.bind(this), this);
+        this.timer.loop(500, Alien.prototype.diggyDiggy.bind(this), this);
 		this.timer.start();
 		this.miningTarget = null;
 

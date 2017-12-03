@@ -4,7 +4,7 @@ Data.POWER_UPS = [
 {
 	id : 0,
 	nom : "Mothership stretcher",
-	base : 30,
+	base : 80,
 	exp : 2,
 	desc : "Allows you to have more aliens living in your mothership.",
 	effect : "Mothership capacity x2"
@@ -14,8 +14,8 @@ Data.POWER_UPS = [
 	nom : "Mining ship hold enlarger",
 	base : 50,
 	exp : 1.1,
-	desc : "Allows your aliens to mine more cristal at each expedition.",
-	effect : "Alien capacity +5"
+	desc : "Allows your mining ships to mine more cristal at each expedition.",
+	effect : "Mining ships capacity +5"
 },
 {
 	id : 2,
