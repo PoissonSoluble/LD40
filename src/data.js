@@ -31,7 +31,7 @@ Data.POWER_UPS = [
 	base : 500,
 	exp : 1.5,
 	desc : "Your slaves - I mean - your employees cannot reproduces themselves for a short amount of time.",
-	effect : "No cloning for 30 seconds."
+	effect : "No cloning for 10 seconds."
 },
 {
 	id : 4,

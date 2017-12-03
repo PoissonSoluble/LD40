@@ -10,10 +10,7 @@ class Filon extends Phaser.Group{
 		this.sprite.anchor.setTo(0.5);
 
 		this.sprite.inputEnabled = true;
-		this.sprite.events.onInputDown.add(Filon.prototype.onClick.bind(this));
-		//this.sprite.scale.setTo(2);
-
-		
+		this.sprite.events.onInputDown.add(Filon.prototype.onClick.bind(this));		
 
 		this.vaisseau = vaisseau;
 

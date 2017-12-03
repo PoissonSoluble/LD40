@@ -28,7 +28,6 @@ class PowerUpManager{
 		while(x == -1 || y == -1 || Phaser.Rectangle.intersects(new Phaser.Rectangle(x, y, 200, 200), this.vaisseau.getBounds())) {
 			x = game.rnd.integerInRange(50, game.width-50);
 			y = game.rnd.integerInRange(100, game.height-50);
-
 		}
 		
 		
@@ -66,12 +65,18 @@ class PowerUpManager{
 		this.powerUpFunctions[2] = () => {
 			// IMA FIRIN MAH LAZAAAA
 			this.vaisseau.laser.activate();
-			
 		}
 		this.powerUpFunctions[3] = () => {
 			this.vaisseau.clonageActive = false;
+			this.shield = new Phaser.Sprite(this.game, this.game.width / 2, this.game.height / 2, 'shield');
+			this.shield.width = this.vaisseau._sprite.width+70;
+			this.shield.height = this.vaisseau._sprite.height+70;
+			this.shield.anchor.setTo(0.5);
+			this.shield.alpha = 0.3;
+			this.game.add.existing(this.shield)
 			this.game.time.events.add(Phaser.Timer.SECOND * 10, () => {
 				this.vaisseau.clonageActive = true;
+				this.shield.destroy();
 			}, this).autoDestroy = true;
 		}
 		this.powerUpFunctions[4] = () => {
@@ -85,9 +90,9 @@ class PowerUpManager{
 	}
 
 	acheter(i){
-		if(this.powerUps[i].argentSuffisant(this.vaisseau.cristaux)){
+		//if(this.powerUps[i].argentSuffisant(this.vaisseau.cristaux)){
 			this.vaisseau.cristaux -= this.powerUps[i].acheter();
 			this.powerUpFunctions[i]();
-		}
+		//}
 	}
 }

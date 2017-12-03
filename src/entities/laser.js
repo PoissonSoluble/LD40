@@ -8,7 +8,6 @@ class Laser extends Phaser.Sprite {
 		this.visible=false;
         this.graphics = game.add.graphics(this.x, this.y);
         this.game = game;
-        //this.graphics.anchor.setTo(0.5);
 
 	}
 	
