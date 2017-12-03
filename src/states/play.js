@@ -9,9 +9,7 @@ class PlayState extends Phaser.State {
         this._filons = new Filons(this.game);
         this._vaisseau = new Vaisseau(this.game, this._filons, this.game.width / 2, this.game.height / 2);
         this._vaisseau.emitter.on('newAlien', alien => {
-//            console.log('eb')
             alien.emitter.on('clicked', () => {
-                console.log('pilon')
                 this._vaisseau.laser.shoot(alien);
             });
         })
