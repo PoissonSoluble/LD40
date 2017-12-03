@@ -15,13 +15,13 @@ class PlayState extends Phaser.State {
                 this._vaisseau.laser.shoot(alien);
             });
         })
-        
-        this._topbar = new TopBar(game,this._vaisseau);
-        
+              
         this._vaisseau.addAlien(new Alien(game, this._vaisseau, this._filons))
 
         this._powerUpManager = new PowerUpManager(this.game, this._vaisseau, this._filons);
         this._shop = new Shop(this.game, this._powerUpManager)
+        
+        this._topbar = new TopBar(game,this._vaisseau, this._shop);
 
         this._vaisseau.emitter.on('gameover', () => { this.game.destroy(); window.location.reload(); })
        
