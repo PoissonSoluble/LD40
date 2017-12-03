@@ -21,6 +21,8 @@ class Vaisseau extends Phaser.Group {
         this._emitter = new EventEmitter;
         this.add(this._sprite);
         this._indicateur = new IndicateurVaisseau(this.game, this.x, this.y);
+
+        this.laser = new Laser(game, this);
         
         this.cloningTime = 5000;
         this.event = game.time.events.loop(this.cloningTime, ()=> {

@@ -1,10 +1,11 @@
-class Laser extends Phaser.Groups {
+class Laser extends Phaser.Sprite {
 
 	constructor(game, vaisseau){
 
-		super(game);
+		super(game, vaisseau.x, vaisseau.y, "vaisseau");
 
 		this.isActive = false;
+		this.visible=false;
 
 
 	}
@@ -13,6 +14,7 @@ class Laser extends Phaser.Groups {
 	activate()
 	{
 		this.isActive=true;
+		this.visible=true;
 	}
 
 	shoot(cible){

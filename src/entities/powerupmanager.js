@@ -56,6 +56,7 @@ class PowerUpManager{
 		}
 		this.powerUpFunctions[2] = () => {
 			//TODO IMA FIRIN MAH LAZAAAA
+			this.vaisseau.laser.activate();
 			
 		}
 		this.powerUpFunctions[3] = () => {
