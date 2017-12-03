@@ -60,8 +60,8 @@ class Vaisseau extends Phaser.Group {
     }
 
     x2() {
-        let tx = new Phaser.Text(game, this.x, this.y, " DUPLICATION! ", { 
-            font: "50px arial", 
+        let tx = new Phaser.Text(game, this.x, this.y, " CLONING! ", { 
+            font: "50px anton, arial", 
             fontWeight: "bold",
             fill: "#ff1111", 
             align: "center",

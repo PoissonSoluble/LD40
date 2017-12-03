@@ -3,20 +3,25 @@
     display: none; 
 }
 #shop {
-    font-family: arial;
+    font-family: anton, arial;
     color: white;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
-    width: 80%;
+    width: 90%;
     height: 80%;
     margin: auto;
     position: absolute;
     top: 0; left: 0; bottom: 0; right: 0;
     background: rgba(10,10, 10, 0.8);
     z-index: 8;
-    padding: 20px;
+    padding: 10px;
     border: 2px solid rgba(255, 255, 255, 0.3);
     display: none;
     overflow: scroll;
+    font-size: 10px;
+}
+
+#shop b, #shop h1 {
+    font-weight: normal;
 }
 
 #shop table {
@@ -30,19 +35,21 @@
     border-top: 2px solid rgba(255, 255, 255, 0.3);
     padding-bottom: 10px;
     text-align: left;
+    min-width: 80px;
 }
 
 
 #shop button {
-    font-size: 30px;
+    font-family: anton, arial;
+    font-size: 1em;
     background: white;
     border: 0;
 }
 
 #shop button img {
     vertical-align: middle;
-    width: 20%;
-    height: 20%;
+    width: 30%;
+    height: 30%;
 }
 
 #shop h1 {
@@ -54,6 +61,7 @@
     padding: 0;
     margin: 0;
     color: #ccc;
+    font-size: 0.9em;
 }
 
 #shop #close {
@@ -62,5 +70,6 @@
     right: 10px;
     color: white;
     font-size: 100px;
-    top:-5px;
+    top:-30px;
+    line-height: 1;
 }
