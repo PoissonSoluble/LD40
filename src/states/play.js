@@ -6,6 +6,7 @@ class PlayState extends Phaser.State {
         space.width = this.game.width;
         space.height = this.game.height;
         
+        this._shop = new Shop(this.game)
         this._filons = new Filons(this.game);
         this._vaisseau = new Vaisseau(this.game, this._filons, this.game.width / 2, this.game.height / 2);
         
@@ -16,7 +17,7 @@ class PlayState extends Phaser.State {
 
         this._powerUpManager = new PowerUpManager(this.game, this._vaisseau, this._filons);
         
-        this._vaisseau.emitter.on('gameover', () => { window.location.reload(); throw new Error(); })
+        this._vaisseau.emitter.on('gameover', () => { this.game.destroy(); window.location.reload(); })
        
     }
 

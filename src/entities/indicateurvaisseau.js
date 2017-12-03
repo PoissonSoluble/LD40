@@ -4,14 +4,14 @@ class IndicateurVaisseau extends Phaser.Group {
         this.x = x;
         this.y = y;
         let style = { 
-            font: "20px arial", 
+            font: "40px arial", 
             fill: "#ffffff", 
             align: "right",
             backgroundColor: 'rgba(255, 255, 255, 0)'
         };
 
         this._text = new Phaser.Text(game, -10, 5, "56", Object.assign(style));
-        this._sprite = new Phaser.Sprite(game, 40, 5, "alien");
+        this._sprite = new Phaser.Sprite(game, 60, 5, "alien");
         this._sprite.scale.setTo(2)
         this._sprite.anchor.setTo(0.5)
         this._text.anchor.setTo(0.5)

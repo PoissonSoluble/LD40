@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>LD40</title>
         <meta name="viewport" content="width=device-width, user-scalable=no" />
+        <link rel="stylesheet" href="css/shop.css">
         <style type="text/css">
             body {
                 margin: 0;
@@ -11,6 +12,11 @@
         </style>
     </head>
     <body ondragstart="return false;">
+        <div id="shop">
+            <div id="close">&times;</div>
+            <h1>Shop</h1>
+            <table></table>
+        </div>
         <script type="text/javascript" src="lib/queue.js"></script>    
         <script type="text/javascript" src="lib/eventemitter.js"></script>            
         <script type="text/javascript" src="lib/phaser.js"></script>
@@ -33,6 +39,8 @@
         <script type="text/javascript" src="src/entities/topbar.js"></script> 
         <script type="text/javascript" src="src/entities/powerup.js"></script> 
         <script type="text/javascript" src="src/entities/powerupmanager.js"></script> 
+
+        <script type="text/javascript" src="src/shop.js"></script>
 
         <script type="text/javascript" src="src/states/boot.js"></script>        
         <script type="text/javascript" src="src/states/load.js"></script>   

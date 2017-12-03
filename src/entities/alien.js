@@ -59,22 +59,21 @@ class Alien extends Phaser.Sprite{
 			this.setCible(this.vaisseau);
 		};
 
-		let returnHomeTimeout =  setTimeout(returnHome, 1000 *cristauxAMiner);
+		let returnHomeTimeout = game.time.events.add(1000 * cristauxAMiner, returnHome);
 
 		for (i = 1; i<=cristauxAMiner; i++)
 		{
-			setTimeout(()=> {
-					
+			game.time.events.add(Phaser.Timer.SECOND * i, () => {
 				if(cible.quantite === 0 && returnHomeTimeout) {
 					returnHome();
-					clearTimeout(returnHomeTimeout);
+					game.time.events.remove(returnHomeTimeout);
 					returnHomeTimeout = null;
 				} else {
 					this.nbCristaux+=this.filons.prelever(cible,1);
 				}
-				
-					
-			}, 1000 * i);
+			}, this).autoDestroy = true;
+
+			
 		}
 
 		
