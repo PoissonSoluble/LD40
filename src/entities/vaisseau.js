@@ -71,10 +71,12 @@ class Vaisseau extends Phaser.Group {
 
     popAlien() {
         let alien = this._alienQueue.dequeue();
-
-        this.event.timer.stop(false);
-        this.event.timer.start();
-        this.animAngle.current=0;
+        if(alien != null) {
+            this.event.timer.stop(false);
+            this.event.timer.start();
+            this.animAngle.current=0;
+        }
+        
         return alien;
     }
 
