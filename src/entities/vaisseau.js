@@ -22,6 +22,12 @@ class Vaisseau extends Phaser.Group {
         this._emitter = new EventEmitter;
         this.add(this._sprite);
         this._indicateur = new IndicateurVaisseau(this.game, this.x, this.y);
+        
+        this.event = game.time.events.loop(5000, ()=> {
+            let alien = new Alien(this.game, this, this.filons, this.x, this.y);
+            this.addAlien(alien);
+            
+        });
 
         this._aliensToIntervals = new WeakMap;
     }
@@ -46,6 +52,8 @@ class Vaisseau extends Phaser.Group {
     popAlien() {
         let alien = this._alienQueue.dequeue();
         clearInterval(this._aliensToIntervals.get(alien));
+        this.event.timer.stop(false);
+        this.event.timer.start();
         return alien;
     }
 
@@ -58,11 +66,7 @@ class Vaisseau extends Phaser.Group {
         }
         alien.entrerVaisseau();
 
-        
-
         // let cloneInterval = setInterval(() => {
-        //     let alien = new Alien(this.game, this, this.filons, this.x, this.y);
-        //     this.addAlien(alien);
         // }, 10000);
 
         //this._aliensToIntervals.set(alien, cloneInterval);
