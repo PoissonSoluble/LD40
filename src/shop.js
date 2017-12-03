@@ -54,10 +54,12 @@ class Shop {
 
 	open() {
 		this.shopDiv.style.display="block";
+		this.game.paused = true;
 	}
 
 	close() {
 		this.shopDiv.style.display="none";
+		this.game.paused = false;
 	}
 
 }
