@@ -55,7 +55,8 @@ class PowerUpManager{
 			Alien.capacite += 5;
 		}
 		this.powerUpFunctions[2] = () => {
-			//TODO
+			//TODO IMA FIRIN MAH LAZAAAA
+			
 		}
 		this.powerUpFunctions[3] = () => {
 			//TODO
