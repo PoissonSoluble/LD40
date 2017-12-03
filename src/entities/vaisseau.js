@@ -133,16 +133,18 @@ class Vaisseau extends Phaser.Group {
 
     addAlien(alien) {
         this._alienQueue.enqueue(alien);
-        alien.entrerVaisseau();
+        
 
         if(!this.clonageActive){
-
+            alien.entrerVaisseau();
             return;
         } 
+        
 
         this.emitter.emit('newAlien', alien)
         if (alien.cible == this)
         {
+            console.log('clone time!!!')
             let newAlien = new Alien(this.game, this, this.filons, this.x, this.y);
             this.addAlien(newAlien);
             const clone = new Phaser.Sprite(this.game, 300, 300, 'clone');
@@ -163,7 +165,7 @@ class Vaisseau extends Phaser.Group {
                     x: 0,
                     y: 0
                 }, 1100, "Linear", true);
-                t2.onComplete.add(() => clone.destroy())
+                t2.onComplete.add(() => { clone.destroy(); })
             })
 
             clone.anchor.setTo(0.5)
@@ -171,6 +173,7 @@ class Vaisseau extends Phaser.Group {
             clone.animations.play('cloneAnim', 10, false);
 
             this.game.add.existing(clone);
+            alien.entrerVaisseau();
         }
         
 

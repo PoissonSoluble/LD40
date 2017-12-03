@@ -27,7 +27,7 @@ class PlayState extends Phaser.State {
 
 
     update() {
-        this.space.tilePosition.x -= 0.5;
+        this.space.tilePosition.x -= 0.1;
     }
 
     restore() {

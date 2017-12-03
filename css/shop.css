@@ -17,11 +17,21 @@
     border: 2px solid rgba(255, 255, 255, 0.3);
     display: none;
     overflow: scroll;
-    font-size: 10px;
+    font-size: 15px;
 }
 
 #shop b, #shop h1 {
     font-weight: normal;
+}
+
+#shop b {
+    font-size: 1.2em;
+}
+
+#shop #money {
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }
 
 
@@ -45,6 +55,7 @@
     font-size: 1em;
     background: white;
     border: 0;
+    color: black;
 }
 
 #shop button img {
