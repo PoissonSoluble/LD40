@@ -17,6 +17,11 @@ class Alien extends Phaser.Sprite{
 		this.emitter = new EventEmitter;
 		this.events.onInputDown.add(() => this.emitter.emit('clicked'));
 
+		this.timer = game.time.create(false);
+        this.timer.loop(1000, Alien.prototype.diggyDiggy.bind(this), this);
+		this.timer.start();
+		this.miningTarget = null;
+
 		game.add.existing(this);
 	}
 
@@ -38,7 +43,22 @@ class Alien extends Phaser.Sprite{
 		{
 			this.visible = false; 
 		}
+
+
+		if(this.miningTarget && (this.miningTarget.quantite == 0 || this.nbCristaux >= Alien.capacite )) {
+			this.miningTarget.removeAlien(this);
+			this.miningTarget = null;
+			this.setCible(this.vaisseau);
+			
+		}
 		
+	}
+
+	diggyDiggy() {
+		if(this.miningTarget) {
+
+			this.nbCristaux += this.filons.prelever(this.miningTarget,1);
+		}
 	}
 
 	setCible(newCible){
@@ -49,39 +69,8 @@ class Alien extends Phaser.Sprite{
 
 	miner(cible) {
 
-		let cristauxAMiner = Math.min(cible.quantite, Alien.capacite)
-		let i;
+		this.miningTarget = cible;
 
-		let onEmpty = () => {
-			returnHome();
-			game.time.events.remove(returnHomeTimeout);
-		}
-
-		let returnHome = ()=> 
-		{
-			cible.removeAlien(this);
-			this.setCible(this.vaisseau);
-			cible.emitter.removeListener('empty', onEmpty);
-		};
-
-		let returnHomeTimeout = game.time.events.add(1000 * cristauxAMiner, returnHome).autoDestroy = true;
-
-		
-		cible.emitter.on('empty', onEmpty)
-		
-
-		for (i = 1; i<=cristauxAMiner; i++)
-		{
-			game.time.events.add(Phaser.Timer.SECOND * i, () => {
-				if(cible.quantite != 0) {
-					this.nbCristaux+=this.filons.prelever(cible,1);
-				}
-			}, this).autoDestroy = true;
-
-			
-		}
-
-		
 	}
 
 	entrerVaisseau(){
