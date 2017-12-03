@@ -24,6 +24,7 @@ class LoadState extends Phaser.State {
         this.game.load.image("vaisseau-mere", "assets/vaisseau-mere.png");
         this.game.load.image("space", "assets/space.png");
         this.game.load.image("white", "assets/white.png");
+        this.game.load.spritesheet("clone", "assets/spritesheet_clonage.png", 171, 303, 7);
        
     }
 

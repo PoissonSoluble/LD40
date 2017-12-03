@@ -33,12 +33,6 @@ class Alien extends Phaser.Sprite{
 		{
 			this.visible = false; 
 		}
-
-		if(Phaser.Math.distance(this.x, this.y, this.vaisseau.x, this.vaisseau.y) < 100) {
-			this.alpha = 0.5;
-		} else {
-			this.alpha = 1;
-		}
 		
 	}
 
