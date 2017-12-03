@@ -33,7 +33,7 @@ class Vaisseau extends Phaser.Group {
             
         });
 
-        this.animAngle = {min:0, max:360, current:0};
+        this.spinnerTimer = this.mkTimer();
         this.graphics = game.add.graphics(this.x, this.y);
 
 
@@ -43,6 +43,12 @@ class Vaisseau extends Phaser.Group {
         return this._emitter;
     }
 
+    mkTimer() {
+        let t = game.time.create(false);
+        t.loop(this.cloningTime, ()=>{}, this);
+        t.start();
+        return t;
+    }
 
     update() {
         if(this.isCapacityExceeded()) {
@@ -55,9 +61,8 @@ class Vaisseau extends Phaser.Group {
         this.graphics.lineStyle(2,0xffffff);
         //this.graphics.beginFill(0xFF3300);
 
-        this.animAngle.current+=(this.game.time.elapsed*this.animAngle.max/this.cloningTime);
-        this.animAngle.current=this.animAngle.current%this.animAngle.max;
-        this.graphics.arc(0, 0, 200, this.animAngle.min, game.math.degToRad(this.animAngle.current), false);
+
+        this.graphics.arc(0, 0, 200, 0, game.math.degToRad((this.spinnerTimer.duration.toFixed(0)/5000) * 360), false);
         //this.graphics.arc(0, 0, 500, this.animAngle.min, game.math.degToRad(this.animAngle.max), false);
 
         this.graphics.endFill();
@@ -74,7 +79,7 @@ class Vaisseau extends Phaser.Group {
         if(alien != null) {
             this.event.timer.stop(false);
             this.event.timer.start();
-            this.animAngle.current=0;
+            this.spinnerTimer = this.mkTimer();
         }
         
         return alien;
