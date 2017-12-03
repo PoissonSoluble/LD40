@@ -1,8 +1,8 @@
 class Cristal extends Filon {
 	constructor(game, x, y, vaisseau){
-		super(game, x, y, "cristal", vaisseau);
+		super(game, x, y, "cristal", vaisseau, game.rnd.integerInRange(1, 5));
 
-		this.quantite = ~~( Math.random() * (50 - 1) + 1);
 		this.aliensPositionX -= 10;
 	}
+
 }

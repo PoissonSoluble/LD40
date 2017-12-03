@@ -1,5 +1,5 @@
 class Filon extends Phaser.Group{
-	constructor(game, x, y, type, vaisseau){
+	constructor(game, x, y, type, vaisseau, quantite){
 		super(game);
 		this.x = x;
 		this.y = y;
@@ -11,16 +11,28 @@ class Filon extends Phaser.Group{
 
 		this.sprite.inputEnabled = true;
 		this.sprite.events.onInputDown.add(Filon.prototype.onClick.bind(this));
+		this.sprite.scale.setTo(2);
+
+		while(Phaser.Rectangle.intersects(new Phaser.Rectangle(this.x, this.y, this.sprite.width, this.sprite.height), vaisseau._sprite.getBounds())) {
+			this.x = game.rnd.integerInRange(0, game.width);
+			this.y = game.rnd.integerInRange(0, game.height);
+
+		}
 
 		this.vaisseau = vaisseau;
 
-		this.quantite = 0;
+		this.quantite = quantite;
 
 		this.aliens = [];
 		this.aliensPositionX = this.x;
 		this.aliensPositionX = this.y;
 
+        this._indicateur = new IndicateurCristaux(this.game, 0, 0);
+		this._indicateur.setValues(this.quantite);
+
 		this.add(this.sprite);
+        this.add(this._indicateur);
+
 
 	}
 
@@ -45,6 +57,8 @@ class Filon extends Phaser.Group{
 		}
 
 		this.quantite -= q;
+		this._indicateur.setValues(this.quantite);
+
 		return q;
 	}
 
