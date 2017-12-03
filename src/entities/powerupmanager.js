@@ -10,7 +10,7 @@ class PowerUpManager{
 			this.powerUps[powerUp.id] = new PowerUp(powerUp.id, powerUp.nom, powerUp.base, powerUp.exp, powerUp.desc, powerUp.effect);
 		}
 
-		initPowerUpFunctions();
+		this.initPowerUpFunctions();
 
 		this.cristalRatio = 75;
 		this.grosCristalRatio = 95;
