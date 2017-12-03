@@ -81,7 +81,7 @@ class Vaisseau extends Phaser.Group {
     }
 
     addAlien(alien) {
-        
+        this.emitter.emit('newAlien', alien)
         this._alienQueue.enqueue(alien);
         if (alien.cible == this)
         {

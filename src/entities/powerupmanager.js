@@ -55,7 +55,7 @@ class PowerUpManager{
 			Alien.capacite += 5;
 		}
 		this.powerUpFunctions[2] = () => {
-			//TODO IMA FIRIN MAH LAZAAAA
+			// IMA FIRIN MAH LAZAAAA
 			this.vaisseau.laser.activate();
 			
 		}

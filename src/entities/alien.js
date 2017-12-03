@@ -12,6 +12,11 @@ class Alien extends Phaser.Sprite{
 		this.dansVaisseau = true;
 		this.filons = filons;
 		this.scale.setTo(0.3);
+
+		this.inputEnabled = true;
+		this.emitter = new EventEmitter;
+		this.events.onInputDown.add(() => this.emitter.emit('clicked'));
+
 		game.add.existing(this);
 	}
 

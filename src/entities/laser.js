@@ -7,7 +7,6 @@ class Laser extends Phaser.Sprite {
 		this.isActive = false;
 		this.visible=false;
 
-
 	}
 	
 
@@ -19,9 +18,9 @@ class Laser extends Phaser.Sprite {
 
 	shoot(cible){
 
-		if (this.isActive && cible.instanceOf(Alien))
+		if (this.isActive)
 		{
-			cible.kill();
+			cible.destroy();
 		}
 
 	}

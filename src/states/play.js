@@ -8,11 +8,17 @@ class PlayState extends Phaser.State {
         
         this._filons = new Filons(this.game);
         this._vaisseau = new Vaisseau(this.game, this._filons, this.game.width / 2, this.game.height / 2);
+        this._vaisseau.emitter.on('newAlien', alien => {
+//            console.log('eb')
+            alien.emitter.on('clicked', () => {
+                console.log('pilon')
+                this._vaisseau.laser.shoot(alien);
+            });
+        })
         
         this._topbar = new TopBar(game,this._vaisseau);
         
-        this._alien = new Alien(game, this._vaisseau, this._filons)
-        this._vaisseau.addAlien(this._alien)
+        this._vaisseau.addAlien(new Alien(game, this._vaisseau, this._filons))
 
         this._powerUpManager = new PowerUpManager(this.game, this._vaisseau, this._filons);
         this._shop = new Shop(this.game, this._powerUpManager)
