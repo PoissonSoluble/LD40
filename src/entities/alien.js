@@ -53,7 +53,7 @@ class Alien extends Phaser.Sprite{
 			this.setCible(this.vaisseau);
 		};
 
-		let returnHomeTimeout = game.time.events.add(1000 * cristauxAMiner, returnHome);
+		let returnHomeTimeout = game.time.events.add(1000 * cristauxAMiner, returnHome).autoDestroy = true;
 
 		for (i = 1; i<=cristauxAMiner; i++)
 		{

@@ -22,6 +22,7 @@ class PowerUp{
 		let ancienPrix = this.prix;
 		this.niveau++;
 		this.prix *= this.exponant;
+		this.prix = Math.round(this.prix);
 		return ancienPrix;
 	}
 }
