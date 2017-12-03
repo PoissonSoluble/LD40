@@ -4,10 +4,12 @@ class IndicateurCristaux extends Phaser.Group {
         this.x = x;
         this.y = y;
         let style = { 
-            font: "17px arial", 
+            font: "17px anton, arial", 
             fill: "#ffffff", 
             align: "right",
-            backgroundColor: 'rgba(255, 255, 255, 0)'
+            backgroundColor: 'rgba(255, 255, 255, 0)',
+            stroke: '#000000',
+            strokeThickness: 4
         };
 
         this._text = new Phaser.Text(game, 0, 30, "err", Object.assign(style));

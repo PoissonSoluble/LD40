@@ -25,7 +25,7 @@ class PowerUpManager{
 		let x = -1;
 		let y = -1;
 		
-		while(x == -1 || y == -1 || Phaser.Rectangle.intersects(new Phaser.Rectangle(x, y, 100, 100), this.vaisseau.getBounds())) {
+		while(x == -1 || y == -1 || Phaser.Rectangle.intersects(new Phaser.Rectangle(x, y, 200, 200), this.vaisseau.getBounds())) {
 			x = game.rnd.integerInRange(50, game.width-50);
 			y = game.rnd.integerInRange(100, game.height-50);
 

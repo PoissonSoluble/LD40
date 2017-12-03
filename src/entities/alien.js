@@ -35,8 +35,8 @@ class Alien extends Phaser.Sprite{
 			}else{
 				let angle = Phaser.Math.angleBetween(this.x, this.y, this.cible.x, this.cible.y);
 				this.angle = angle * Phaser.Math.RAD_TO_DEG;
-				this.x+=10*Math.cos(angle);
-				this.y+=10*Math.sin(angle);
+				this.x+=5*Math.cos(angle);
+				this.y+=5*Math.sin(angle);
 			}
 		}
 		else if(this.dansVaisseau)

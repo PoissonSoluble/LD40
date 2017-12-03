@@ -4,33 +4,41 @@ class Filons extends Phaser.Group{
 		super(game);
 	}
 
+	addFilon(f) {
+		this.add(f);
+		f.alpha = 0;
+		this.game.add.tween(f).to( {
+			alpha: 1
+		}, 1000, "Linear", true);
+	}
+
 	ajouterCristal(x, y, vaisseau){
 		let cristal = new Cristal(this.game, x, y, vaisseau);
-		this.add(cristal);
+		this.addFilon(cristal);
 		return cristal;
 	}
 
 	ajouterGrosCristal(x, y, vaisseau){
 		let grosCristal = new GrosCristal(this.game, x, y, vaisseau);
-		this.add(grosCristal);
+		this.addFilon(grosCristal);
 		return grosCristal;
 	}
 
 	ajouterPlaneteDesert(x, y, vaisseau){
 		let planeteDesert = new PlaneteDesert(this.game, x, y, vaisseau);
-		this.add(planeteDesert);
+		this.addFilon(planeteDesert);
 		return planeteDesert;
 	}
 
 	ajouterPlanetePoison(x, y, vaisseau){
 		let planetePoison = new PlanetePoison(this.game, x, y, vaisseau);
-		this.add(planetePoison);
+		this.addFilon(planetePoison);
 		return planetePoison;
 	}
 
 	ajouterPlaneteBleue(x, y, vaisseau){
 		let planeteBleue = new PlaneteBleue(this.game, x, y, vaisseau);
-		this.add(planeteBleue);
+		this.addFilon(planeteBleue);
 		return planeteBleue;
 	}
 
