@@ -69,7 +69,10 @@ class PowerUpManager{
 			
 		}
 		this.powerUpFunctions[3] = () => {
-			//TODO
+			this.vaisseau.clonageActive = false;
+			this.game.time.events.add(Phaser.Timer.SECOND * 10, () => {
+				this.vaisseau.clonageActive = true;
+			}, this).autoDestroy = true;
 		}
 		this.powerUpFunctions[4] = () => {
 			this.cristalRatio*=0.95;
@@ -82,9 +85,9 @@ class PowerUpManager{
 	}
 
 	acheter(i){
-		if(this.powerUps[i].argentSuffisant(this.vaisseau.cristaux)){
+		//if(this.powerUps[i].argentSuffisant(this.vaisseau.cristaux)){
 			this.vaisseau.cristaux -= this.powerUps[i].acheter();
 			this.powerUpFunctions[i]();
-		}
+		//}
 	}
 }

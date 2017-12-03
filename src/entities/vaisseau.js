@@ -24,6 +24,10 @@ class Vaisseau extends Phaser.Group {
         this.laser = new Laser(game, this);     
         this.cloningTime = 5000;
         this.event = game.time.events.loop(this.cloningTime, ()=> {
+            if(!this.clonageActive){
+                return;
+            }
+
             this.x2();
             let nbAliens = this._alienQueue.getLength();
             for (let i=0; i<nbAliens;i++)
@@ -45,6 +49,7 @@ class Vaisseau extends Phaser.Group {
         this.bulleShop = new BulleShop(game, this.x + 220, this.y - 100);
         this.bullePopulation = new BullePopulation(game, this.x + 50, this.y + 120);
         this.bulleShop.emitter.on('click', () => {this.emitter.emit('open-shop')});
+        this.clonageActive = true;
 
     }
     
@@ -92,8 +97,11 @@ class Vaisseau extends Phaser.Group {
         this.graphics.lineStyle(15,0xff2222);
         //this.graphics.beginFill(0xFF3300);
 
+        if(this.clonageActive){
 
-        this.graphics.arc(0, 0, 50, game.math.degToRad((this.spinnerTimer.duration.toFixed(0)/this.cloningTime) * 360), 0, false);
+            this.graphics.arc(0, 0, 50, game.math.degToRad((this.spinnerTimer.duration.toFixed(0)/this.cloningTime) * 360), 0, false);
+
+        } 
         //this.graphics.arc(0, 0, 500, this.animAngle.min, game.math.degToRad(this.animAngle.max), false);
 
         this.graphics.endFill();
@@ -124,8 +132,15 @@ class Vaisseau extends Phaser.Group {
     }
 
     addAlien(alien) {
-        this.emitter.emit('newAlien', alien)
         this._alienQueue.enqueue(alien);
+        alien.entrerVaisseau();
+
+        if(!this.clonageActive){
+
+            return;
+        } 
+
+        this.emitter.emit('newAlien', alien)
         if (alien.cible == this)
         {
             let newAlien = new Alien(this.game, this, this.filons, this.x, this.y);
@@ -157,7 +172,7 @@ class Vaisseau extends Phaser.Group {
 
             this.game.add.existing(clone);
         }
-        alien.entrerVaisseau();
+        
 
 
     }
