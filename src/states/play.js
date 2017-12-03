@@ -20,8 +20,8 @@ class PlayState extends Phaser.State {
 
         this._powerUpManager = new PowerUpManager(this.game, this._vaisseau, this._filons);
         this._shop = new Shop(this.game, this._powerUpManager)
-        
-        this._topbar = new TopBar(game,this._vaisseau, this._shop);
+        this._vaisseau.emitter.on('open-shop', () => { this._shop.open(); })
+        //this._topbar = new TopBar(game,this._vaisseau, this._shop);
 
         this._vaisseau.emitter.on('gameover', () => { this.game.destroy(); window.location.reload(); })
        

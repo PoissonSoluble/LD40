@@ -22,8 +22,9 @@ class Vaisseau extends Phaser.Group {
         this.add(this._sprite);
 
         this.laser = new Laser(game, this);     
-        this.cloningTime = 5000;
+        this.cloningTime = 10000;
         this.event = game.time.events.loop(this.cloningTime, ()=> {
+            this.x2();
             let nbAliens = this._alienQueue.getLength();
             for (let i=0; i<nbAliens;i++)
             {
@@ -35,7 +36,11 @@ class Vaisseau extends Phaser.Group {
 
         this.spinnerTimer = this.mkTimer();
         this.graphics = game.add.graphics(this.x, this.y);
-
+        this.graphics.alpha = .5;
+        this.bulleCristaux = new BulleCristaux(game, this.x - 150, this.y -110);
+        this.bulleShop = new BulleShop(game, this.x + 220, this.y - 100);
+        this.bullePopulation = new BullePopulation(game, this.x + 50, this.y + 120);
+        this.bulleShop.emitter.on('click', () => {this.emitter.emit('open-shop')});
 
     }
     
@@ -50,6 +55,29 @@ class Vaisseau extends Phaser.Group {
         return t;
     }
 
+    x2() {
+        let tx = new Phaser.Text(game, this.x, this.y, " DUPLICATION! ", { 
+            font: "50px arial", 
+            fontWeight: "bold",
+            fill: "#ff1111", 
+            align: "center",
+            backgroundColor: 'rgba(255, 0, 0, 0.3)'
+        });
+
+        tx.anchor.setTo(0.5);
+
+        let tw = game.add.tween(tx).to( {
+            y: tx.y - 100,
+            alpha: 0.1
+        }, 1500, "Linear", true);
+        tw.onComplete.add(() => {
+            tx.destroy();
+        });
+
+        this.game.add.existing(tx)
+
+    }
+
     update() {
         if(this.isCapacityExceeded()) {
             this.emitter.emit('gameover');
@@ -57,14 +85,17 @@ class Vaisseau extends Phaser.Group {
 
 
         this.graphics.clear();
-        this.graphics.lineStyle(2,0xffffff);
+        this.graphics.lineStyle(15,0xff2222);
         //this.graphics.beginFill(0xFF3300);
 
 
-        this.graphics.arc(0, 0, 200, 0, game.math.degToRad((this.spinnerTimer.duration.toFixed(0)/5000) * 360), false);
+        this.graphics.arc(0, 0, 50, game.math.degToRad((this.spinnerTimer.duration.toFixed(0)/10000) * 360), 0, false);
         //this.graphics.arc(0, 0, 500, this.animAngle.min, game.math.degToRad(this.animAngle.max), false);
 
         this.graphics.endFill();
+
+        this.bulleCristaux.setValues(this.cristaux)
+        this.bullePopulation.setValues(this.getAlienNumberInShip(), this.capacity)
 
     }
 
@@ -78,6 +109,7 @@ class Vaisseau extends Phaser.Group {
 
 
     popAlien() {
+        
         let alien = this._alienQueue.dequeue();
         if(alien != null) {
             this.event.timer.stop(false);
@@ -103,16 +135,17 @@ class Vaisseau extends Phaser.Group {
             let tween = game.add.tween(clone).to( {
                 x: alien.x + Math.cos(alien.angle * Phaser.Math.DEG_TO_RAD) * 50,
                 y: alien.y + Math.sin(alien.angle * Phaser.Math.DEG_TO_RAD) * 50
-            }, 1000, "Linear", true);
+            }, 700, "Linear", true);
 
             tween.onComplete.add(() => {
                 game.add.tween(clone).to( {
                     alpha: 0
                 }, 1000, "Linear", true);
-                game.add.tween(clone.scale).to( {
+                let t2 = game.add.tween(clone.scale).to( {
                     x: 0,
                     y: 0
-                }, 1000, "Linear", true);
+                }, 1100, "Linear", true);
+                t2.onComplete.add(() => clone.destroy())
             })
 
             clone.anchor.setTo(0.5)
