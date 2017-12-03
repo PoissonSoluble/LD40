@@ -20,7 +20,6 @@ class Vaisseau extends Phaser.Group {
         this.cristaux = 0;
         this._emitter = new EventEmitter;
         this.add(this._sprite);
-        this._indicateur = new IndicateurVaisseau(this.game, this.x, this.y);
         
         this.cloningTime = 5000;
         this.event = game.time.events.loop(this.cloningTime, ()=> {
@@ -55,7 +54,6 @@ class Vaisseau extends Phaser.Group {
             this.emitter.emit('gameover');
         }
 
-        this._indicateur.setValues(this._alienQueue.getLength(), this.capacity);
 
         this.graphics.clear();
         this.graphics.lineStyle(2,0xffffff);
@@ -71,6 +69,10 @@ class Vaisseau extends Phaser.Group {
 
     isCapacityExceeded() {
         return this._alienQueue.getLength() > this.capacity;
+    }
+
+    getAlienNumberInShip(){
+        return this._alienQueue.getLength();
     }
 
 
