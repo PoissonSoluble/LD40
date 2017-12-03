@@ -15,7 +15,7 @@ class Vaisseau extends Phaser.Group {
         this._sprite.anchor.set(0.5);
         
         this._alienQueue = new Queue();
-        this._capacity = Data.INITIAL_CAPACITY;
+        this.capacity = Data.INITIAL_CAPACITY;
         this.filons = filons;
         this.cristaux = 0;
         this._emitter = new EventEmitter;
@@ -48,7 +48,8 @@ class Vaisseau extends Phaser.Group {
         if(this.isCapacityExceeded()) {
             this.emitter.emit('gameover');
         }
-        this._indicateur.setValues(this._alienQueue.getLength(), this._capacity);
+
+        this._indicateur.setValues(this._alienQueue.getLength(), this.capacity);
 
         this.graphics.clear();
         this.graphics.lineStyle(2,0xffffff);
@@ -60,10 +61,11 @@ class Vaisseau extends Phaser.Group {
         //this.graphics.arc(0, 0, 500, this.animAngle.min, game.math.degToRad(this.animAngle.max), false);
 
         this.graphics.endFill();
+
     }
 
     isCapacityExceeded() {
-        return this._alienQueue.getLength() > this._capacity;
+        return this._alienQueue.getLength() > this.capacity;
     }
 
 
@@ -77,11 +79,37 @@ class Vaisseau extends Phaser.Group {
     }
 
     addAlien(alien) {
+        
         this._alienQueue.enqueue(alien);
         if (alien.cible == this)
         {
             let newAlien = new Alien(this.game, this, this.filons, this.x, this.y);
             this.addAlien(newAlien);
+            const clone = new Phaser.Sprite(this.game, 300, 300, 'clone');
+            clone.scale.setTo(0.3);
+            clone.angle = alien.angle;
+            clone.x=alien.x;
+            clone.y=alien.y;
+            let tween = game.add.tween(clone).to( {
+                x: alien.x + Math.cos(alien.angle * Phaser.Math.DEG_TO_RAD) * 50,
+                y: alien.y + Math.sin(alien.angle * Phaser.Math.DEG_TO_RAD) * 50
+            }, 1000, "Linear", true);
+
+            tween.onComplete.add(() => {
+                game.add.tween(clone).to( {
+                    alpha: 0
+                }, 1000, "Linear", true);
+                game.add.tween(clone.scale).to( {
+                    x: 0,
+                    y: 0
+                }, 1000, "Linear", true);
+            })
+
+            clone.anchor.setTo(0.5)
+            clone.animations.add('cloneAnim', [0, 1, 2, 3, 4, 5, 6]);
+            clone.animations.play('cloneAnim', 10, false);
+
+            this.game.add.existing(clone);
         }
         alien.entrerVaisseau();
 
