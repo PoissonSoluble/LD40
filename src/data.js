@@ -1,5 +1,5 @@
 const Data = {};
-Data.INITIAL_CAPACITY = 20;
+Data.INITIAL_CAPACITY = 50;
 Data.POWER_UPS = [ 
 {
 	id : 0,

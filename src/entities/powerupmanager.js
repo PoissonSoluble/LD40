@@ -22,8 +22,16 @@ class PowerUpManager{
 	}
 
 	createRessource(){
-		let x = this.game.rnd.integerInRange(0, this.game.width);
-		let y = this.game.rnd.integerInRange(70, this.game.height);
+		let x = -1;
+		let y = -1;
+		
+		while(x == -1 || y == -1 || Phaser.Rectangle.intersects(new Phaser.Rectangle(x, y, 100, 100), this.vaisseau._sprite.getBounds())) {
+			x = game.rnd.integerInRange(50, game.width-50);
+			y = game.rnd.integerInRange(100, game.height-50);
+
+		}
+		
+		
 		let rand = this.game.rnd.integerInRange(1, 100);
 		if(rand <= this.cristalRatio) {
 			this.filons.ajouterCristal(x,y,this.vaisseau);
