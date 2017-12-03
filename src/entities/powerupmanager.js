@@ -16,9 +16,7 @@ class PowerUpManager{
 		this.planetePoisonRatio = 0;
 		this.planeteBleueRatio = 0;
 
-
 		game.time.events.loop(Phaser.Timer.SECOND*2, PowerUpManager.prototype.createRessource.bind(this), this);
-
 	}
 
 	createRessource(){
@@ -45,4 +43,13 @@ class PowerUpManager{
 	getPowerUps(){
 		return this.powerUps;
 	}
+
+	initPowerUpFunctions(){
+		this.powerUpFunctions = [];
+		this.powerUpFunctions[0] = () => {
+			//this.
+		}
+	}
+
+
 }
