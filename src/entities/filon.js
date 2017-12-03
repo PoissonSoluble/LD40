@@ -11,7 +11,7 @@ class Filon extends Phaser.Group{
 
 		this.sprite.inputEnabled = true;
 		this.sprite.events.onInputDown.add(Filon.prototype.onClick.bind(this));
-		this.sprite.scale.setTo(2);
+		//this.sprite.scale.setTo(2);
 
 		while(Phaser.Rectangle.intersects(new Phaser.Rectangle(this.x, this.y, this.sprite.width, this.sprite.height), vaisseau._sprite.getBounds())) {
 			this.x = game.rnd.integerInRange(0, game.width);

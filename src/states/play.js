@@ -17,7 +17,7 @@ class PlayState extends Phaser.State {
 
         this._powerUpManager = new PowerUpManager(this.game, this._vaisseau, this._filons);
         
-        this._vaisseau.emitter.on('gameover', () => { window.location.reload(); throw new Error(); })
+        this._vaisseau.emitter.on('gameover', () => { this.game.destroy(); window.location.reload(); })
        
     }
 

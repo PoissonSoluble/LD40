@@ -12,7 +12,6 @@ class TopBar extends Phaser.Group {
 
         let cristal = new Phaser.Sprite(game, game.width / 6, 25, 'cristal_ressource');
         cristal.width = cristal.height = 40;
-        cristal.scale.setTo(2);
         cristal.anchor.setTo(0.5);
 
         let style = { 
