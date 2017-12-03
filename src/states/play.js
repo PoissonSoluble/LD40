@@ -2,9 +2,9 @@ class PlayState extends Phaser.State {
 
     
     create() {
-        let space = this.game.add.tileSprite(0, 0, 1920, 1080, 'space');
-        space.width = this.game.width;
-        space.height = this.game.height;
+        this.space = this.game.add.tileSprite(0, 0, 1920, 1080, 'space');
+        this.space.width = this.game.width;
+        this.space.height = this.game.height;
         
         this._filons = new Filons(this.game);
         this._vaisseau = new Vaisseau(this.game, this._filons, this.game.width / 2, this.game.height / 2);
@@ -27,6 +27,7 @@ class PlayState extends Phaser.State {
 
 
     update() {
+        this.space.tilePosition.x -= 0.5;
     }
 
     restore() {
