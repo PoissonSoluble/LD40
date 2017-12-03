@@ -3,7 +3,7 @@ class PlaneteDesert extends Filon {
 		super(game, x, y, "planete_desert", vaisseau);
 
 		this.quantite = this.game.rnd.integerInRange(30, 100);
-		this.aliensPositionX -= 10;
+		this.aliensPositionX -= 15;
 		//this.scale.setTo(2);
 	}
 }
