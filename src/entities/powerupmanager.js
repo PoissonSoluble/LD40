@@ -13,8 +13,8 @@ class PowerUpManager{
 		this.initPowerUpFunctions();
 
 		this.cristalRatio = 75;
-		this.grosCristalRatio = 95;
-		this.planeteDesertRatio = 100;
+		this.grosCristalRatio = 20;
+		this.planeteDesertRatio = 5;
 		this.planetePoisonRatio = 0;
 		this.planeteBleueRatio = 0;
 
@@ -33,19 +33,20 @@ class PowerUpManager{
 		
 		
 		let rand = this.game.rnd.integerInRange(1, 100);
-		if(rand <= this.cristalRatio) {
+		let ratio = 0
+		if(rand <= (ratio += this.cristalRatio)) {
 			this.filons.ajouterCristal(x,y,this.vaisseau);
 		}
-		else if(rand <= this.grosCristalRatio) {
+		else if(rand <= (ratio += this.grosCristalRatio)) {
 			this.filons.ajouterGrosCristal(x,y,this.vaisseau);
 		}
-		else if(rand <= this.planeteDesertRatio){
+		else if(rand <= (ratio += this.planeteDesertRatio)){
 			this.filons.ajouterPlaneteDesert(x,y,this.vaisseau);
 		}
-		else if(rand <= this.planetePoisonRatio){
+		else if(rand <= (ratio += this.planetePoisonRatio)){
 			this.filons.ajouterPlanetePoison(x,y,this.vaisseau);
 		}
-		else if(rand <= this.planeteBleueRatio){
+		else if(rand <= (ratio += this.planeteBleueRatio)){
 			this.filons.ajouterPlaneteBleue(x,y,this.vaisseau);
 		}
 	}
@@ -71,7 +72,12 @@ class PowerUpManager{
 			//TODO
 		}
 		this.powerUpFunctions[4] = () => {
-			//TODO
+			this.cristalRatio*=0.95;
+			this.grosCristalRatio*=0.97;
+			this.planeteDesertRatio*=0.99;
+			this.planetePoisonRatio = 0.75 * (100 - (this.cristalRatio + this.grosCristalRatio + this.planeteDesertRatio));
+			this.planeteBleueRatio = 0.25 * (100 - (this.cristalRatio + this.grosCristalRatio + this.planeteDesertRatio));
+			console.log(this.planetePoisonRatio + " " + this.planeteBleueRatio);
 		}
 	}
 

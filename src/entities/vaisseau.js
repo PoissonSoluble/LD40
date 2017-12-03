@@ -11,7 +11,7 @@ class Vaisseau extends Phaser.Group {
 
         this.x = x;
         this.y = y;
-        this._sprite = new Phaser.Sprite(game, 0, 0, 'vaisseau-mere');
+        this._sprite = new Phaser.Sprite(game, 0, 0, 'vaisseau_mere_sheet');
         this._sprite.anchor.set(0.5);
         
         this._alienQueue = new Queue();
@@ -35,6 +35,9 @@ class Vaisseau extends Phaser.Group {
 
         this.spinnerTimer = this.mkTimer();
         this.graphics = game.add.graphics(this.x, this.y);
+
+        this._sprite.animations.add('reacteur', [0, 1, 2], 5, true);
+        this._sprite.animations.play('reacteur');
 
 
     }
