@@ -15,7 +15,7 @@ class Vaisseau extends Phaser.Group {
         this._sprite.anchor.set(0.5);
         
         this._alienQueue = new Queue();
-        this._capacity = Data.INITIAL_CAPACITY;
+        this.capacity = Data.INITIAL_CAPACITY;
         this.filons = filons;
         this.cristaux = 0;
         this._emitter = new EventEmitter;
@@ -43,11 +43,11 @@ class Vaisseau extends Phaser.Group {
         if(this.isCapacityExceeded()) {
             this.emitter.emit('gameover');
         }
-        this._indicateur.setValues(this._alienQueue.getLength(), this._capacity);
+        this._indicateur.setValues(this._alienQueue.getLength(), this.capacity);
     }
 
     isCapacityExceeded() {
-        return this._alienQueue.getLength() > this._capacity;
+        return this._alienQueue.getLength() > this.capacity;
     }
 
 

@@ -3,7 +3,7 @@ class Alien extends Phaser.Sprite{
 	constructor(game, vaisseau, filons, x=0, y=0) {
 		super(game, x || vaisseau.x, y || vaisseau.y,  "vaisseau");
 		this.anchor.setTo(0.5);
-		this.capacite = 5;
+		//this.capacite = 5;
 		this.nbCristaux = 0;
 		this.cible = null;
 		this.tempsClonage = 0;
@@ -50,7 +50,7 @@ class Alien extends Phaser.Sprite{
 
 	miner(cible) {
 
-		let cristauxAMiner = Math.min(cible.quantite, this.capacite)
+		let cristauxAMiner = Math.min(cible.quantite, Alien.capacite)
 		let i;
 
 		let returnHome = ()=> 
@@ -86,3 +86,5 @@ class Alien extends Phaser.Sprite{
 		this.nbCristaux = 0;
 	}
 }
+
+Alien.capacite = 5;

@@ -10,6 +10,8 @@ class PowerUpManager{
 			this.powerUps[powerUp.id] = new PowerUp(powerUp.id, powerUp.nom, powerUp.base, powerUp.exp, powerUp.desc, powerUp.effect);
 		}
 
+		initPowerUpFunctions();
+
 		this.cristalRatio = 75;
 		this.grosCristalRatio = 95;
 		this.planeteDesertRatio = 100;
@@ -21,7 +23,7 @@ class PowerUpManager{
 
 	createRessource(){
 		let x = this.game.rnd.integerInRange(0, this.game.width);
-		let y = this.game.rnd.integerInRange(60, this.game.height);
+		let y = this.game.rnd.integerInRange(500, this.game.height);
 		let rand = this.game.rnd.integerInRange(1, 100);
 		if(rand <= this.cristalRatio) {
 			this.filons.ajouterCristal(x,y,this.vaisseau);
@@ -47,9 +49,24 @@ class PowerUpManager{
 	initPowerUpFunctions(){
 		this.powerUpFunctions = [];
 		this.powerUpFunctions[0] = () => {
-			//this.
+			this.vaisseau.capacity *= 2;
+		}
+		this.powerUpFunctions[1] = () => {
+			Alien.capacite += 5;
+		}
+		this.powerUpFunctions[2] = () => {
+			//TODO
+		}
+		this.powerUpFunctions[3] = () => {
+			//TODO
+		}
+		this.powerUpFunctions[4] = () => {
+			//TODO
 		}
 	}
 
-
+	acheter(i){
+		powerUps[i].acheter();
+		powerUpFunctions[i]();
+	}
 }
