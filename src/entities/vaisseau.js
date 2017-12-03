@@ -22,7 +22,7 @@ class Vaisseau extends Phaser.Group {
         this.add(this._sprite);
 
         this.laser = new Laser(game, this);     
-        this.cloningTime = 10000;
+        this.cloningTime = 5000;
         this.event = game.time.events.loop(this.cloningTime, ()=> {
             this.x2();
             let nbAliens = this._alienQueue.getLength();
@@ -93,7 +93,7 @@ class Vaisseau extends Phaser.Group {
         //this.graphics.beginFill(0xFF3300);
 
 
-        this.graphics.arc(0, 0, 50, game.math.degToRad((this.spinnerTimer.duration.toFixed(0)/10000) * 360), 0, false);
+        this.graphics.arc(0, 0, 50, game.math.degToRad((this.spinnerTimer.duration.toFixed(0)/this.cloningTime) * 360), 0, false);
         //this.graphics.arc(0, 0, 500, this.animAngle.min, game.math.degToRad(this.animAngle.max), false);
 
         this.graphics.endFill();

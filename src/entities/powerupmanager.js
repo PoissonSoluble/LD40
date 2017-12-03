@@ -82,9 +82,9 @@ class PowerUpManager{
 	}
 
 	acheter(i){
-		//if(this.powerUps[i].argentSuffisant(this.vaisseau.cristaux)){
+		if(this.powerUps[i].argentSuffisant(this.vaisseau.cristaux)){
 			this.vaisseau.cristaux -= this.powerUps[i].acheter();
 			this.powerUpFunctions[i]();
-		//}
+		}
 	}
 }
