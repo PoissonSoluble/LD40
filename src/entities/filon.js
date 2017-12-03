@@ -13,11 +13,7 @@ class Filon extends Phaser.Group{
 		this.sprite.events.onInputDown.add(Filon.prototype.onClick.bind(this));
 		//this.sprite.scale.setTo(2);
 
-		while(Phaser.Rectangle.intersects(new Phaser.Rectangle(this.x, this.y, this.sprite.width, this.sprite.height), vaisseau._sprite.getBounds())) {
-			this.x = game.rnd.integerInRange(0, game.width);
-			this.y = game.rnd.integerInRange(0, game.height);
-
-		}
+		
 
 		this.vaisseau = vaisseau;
 
@@ -33,7 +29,8 @@ class Filon extends Phaser.Group{
 		this.add(this.sprite);
         this.add(this._indicateur);
 
-
+		this.emitter = new EventEmitter;
+		this.emitter.setMaxListeners(0); // infini
 	}
 
 	addAlien(alien){
@@ -53,6 +50,7 @@ class Filon extends Phaser.Group{
 		if(q >= this.quantite){
 			q = this.quantite;
 			this.quantite = 0;
+			this.emitter.emit('empty');
 			return q;
 		}
 
