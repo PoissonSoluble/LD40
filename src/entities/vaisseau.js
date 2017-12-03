@@ -111,7 +111,6 @@ class Vaisseau extends Phaser.Group {
         return this._alienQueue.getLength();
     }
 
-
     popAlien() {
         
         let alien = this._alienQueue.dequeue();

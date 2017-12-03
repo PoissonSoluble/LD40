@@ -12,9 +12,9 @@ class PowerUpManager{
 
 		this.initPowerUpFunctions();
 
-		this.cristalRatio = 75;
-		this.grosCristalRatio = 20;
-		this.planeteDesertRatio = 5;
+		this.cristalRatio = 80;
+		this.grosCristalRatio = 19;
+		this.planeteDesertRatio = 1;
 		this.planetePoisonRatio = 0;
 		this.planeteBleueRatio = 0;
 
