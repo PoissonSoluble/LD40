@@ -24,8 +24,12 @@ class Vaisseau extends Phaser.Group {
         this._indicateur = new IndicateurVaisseau(this.game, this.x, this.y);
         
         this.event = game.time.events.loop(5000, ()=> {
-            let alien = new Alien(this.game, this, this.filons, this.x, this.y);
-            this.addAlien(alien);
+            let nbAliens = this._alienQueue.getLength();
+            for (let i=0; i<nbAliens;i++)
+            {
+                let alien = new Alien(this.game, this, this.filons, this.x, this.y);
+                this.addAlien(alien);
+            }
             
         });
 
