@@ -43,7 +43,7 @@ class Shop {
     }
 
     open() {
-        this.shopDiv.style.display="";
+        this.shopDiv.style.display="block";
     }
 
     close() {
