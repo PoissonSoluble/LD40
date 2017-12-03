@@ -59,7 +59,7 @@ class Alien extends Phaser.Sprite{
 			cible.emitter.removeListener('empty', onEmpty);
 		};
 
-		let returnHomeTimeout = game.time.events.add(1000 * cristauxAMiner, returnHome);
+		let returnHomeTimeout = game.time.events.add(1000 * cristauxAMiner, returnHome).autoDestroy = true;
 
 		
 		cible.emitter.on('empty', onEmpty)

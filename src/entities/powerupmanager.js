@@ -31,9 +31,7 @@ class PowerUpManager{
 
 		}
 		
-		this.x = x;
-		this.y = y;
-
+		
 		let rand = this.game.rnd.integerInRange(1, 100);
 		if(rand <= this.cristalRatio) {
 			this.filons.ajouterCristal(x,y,this.vaisseau);
@@ -76,7 +74,7 @@ class PowerUpManager{
 	}
 
 	acheter(i){
-		powerUps[i].acheter();
-		powerUpFunctions[i]();
+		this.powerUps[i].acheter();
+		this.powerUpFunctions[i]();
 	}
 }
