@@ -22,7 +22,7 @@ class Vaisseau extends Phaser.Group {
         this.add(this._sprite);
 
         this.laser = new Laser(game, this);     
-        this.cloningTime = 5000;
+        this.cloningTime = 6000;
         this.event = game.time.events.loop(this.cloningTime, ()=> {
             if(!this.clonageActive){
                 return;
@@ -58,14 +58,14 @@ class Vaisseau extends Phaser.Group {
     }
 
     mkTimer() {
-        let t = game.time.create(false);
+        let t = this.game.time.create(false);
         t.loop(this.cloningTime, ()=>{}, this);
         t.start();
         return t;
     }
 
     x2() {
-        let tx = new Phaser.Text(game, this.x, this.y, " CLONING! ", { 
+        let tx = new Phaser.Text(this.game, this.x, this.y, " CLONING! ", { 
             font: "50px anton, arial", 
             fontWeight: "bold",
             fill: "#ff1111", 
@@ -75,7 +75,7 @@ class Vaisseau extends Phaser.Group {
 
         tx.anchor.setTo(0.5);
 
-        let tw = game.add.tween(tx).to( {
+        let tw = this.game.add.tween(tx).to( {
             y: tx.y - 100,
             alpha: 0.1
         }, 1500, "Linear", true);
@@ -99,10 +99,10 @@ class Vaisseau extends Phaser.Group {
 
         if(this.clonageActive){
 
-            this.graphics.arc(0, 0, 50, game.math.degToRad((this.spinnerTimer.duration.toFixed(0)/this.cloningTime) * 360), 0, false);
+            this.graphics.arc(0, 0, 50, this.game.math.degToRad((this.spinnerTimer.duration.toFixed(0)/this.cloningTime) * 360), 0, false);
 
         } 
-        //this.graphics.arc(0, 0, 500, this.animAngle.min, game.math.degToRad(this.animAngle.max), false);
+        //this.graphics.arc(0, 0, 500, this.animAngle.min, this.game.math.degToRad(this.animAngle.max), false);
 
         this.graphics.endFill();
 
@@ -144,7 +144,6 @@ class Vaisseau extends Phaser.Group {
         this.emitter.emit('newAlien', alien)
         if (alien.cible == this)
         {
-            console.log('clone time!!!')
             let newAlien = new Alien(this.game, this, this.filons, this.x, this.y);
             this.addAlien(newAlien);
             const clone = new Phaser.Sprite(this.game, 300, 300, 'clone');
@@ -152,16 +151,16 @@ class Vaisseau extends Phaser.Group {
             clone.angle = alien.angle;
             clone.x=alien.x;
             clone.y=alien.y;
-            let tween = game.add.tween(clone).to( {
+            let tween = this.game.add.tween(clone).to( {
                 x: alien.x + Math.cos(alien.angle * Phaser.Math.DEG_TO_RAD) * 50,
                 y: alien.y + Math.sin(alien.angle * Phaser.Math.DEG_TO_RAD) * 50
             }, 700, "Linear", true);
 
             tween.onComplete.add(() => {
-                game.add.tween(clone).to( {
+                this.game.add.tween(clone).to( {
                     alpha: 0
                 }, 1000, "Linear", true);
-                let t2 = game.add.tween(clone.scale).to( {
+                let t2 = this.game.add.tween(clone.scale).to( {
                     x: 0,
                     y: 0
                 }, 1100, "Linear", true);

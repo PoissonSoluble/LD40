@@ -17,6 +17,7 @@ class PowerUpManager{
 		this.planeteDesertRatio = 1;
 		this.planetePoisonRatio = 0;
 		this.planeteBleueRatio = 0;
+		this.emitter = new EventEmitter;
 
 		game.time.events.loop(Phaser.Timer.SECOND*2, PowerUpManager.prototype.createRessource.bind(this), this);
 	}
@@ -26,8 +27,8 @@ class PowerUpManager{
 		let y = -1;
 		
 		while(x == -1 || y == -1 || Phaser.Rectangle.intersects(new Phaser.Rectangle(x, y, 200, 200), this.vaisseau.getBounds())) {
-			x = game.rnd.integerInRange(50, game.width-50);
-			y = game.rnd.integerInRange(100, game.height-50);
+			x = this.game.rnd.integerInRange(50, this.game.width-50);
+			y = this.game.rnd.integerInRange(100, this.game.height-50);
 		}
 		
 		
@@ -60,13 +61,21 @@ class PowerUpManager{
 		this.powerUpFunctions = [];
 		this.powerUpFunctions[0] = () => {
 			this.vaisseau.capacity *= 2;
+			this.emitter.emit('capacity', this.vaisseau.capacity);
 		}
 		this.powerUpFunctions[1] = () => {
 			Alien.capacite += 5;
+			this.emitter.emit('alien-capacity', Alien.capacite);
 		}
 		this.powerUpFunctions[2] = () => {
 			// IMA FIRIN MAH LAZAAAA
 			this.vaisseau.laser.activate();
+			this.emitter.emit('laser-start');
+			this.game.time.events.add(10000, () => { 
+				console.log('its the end')
+				this.vaisseau.laser.disable(); 
+				this.emitter.emit('laser-stop');
+			}, this).autoDestroy = true;
 		}
 		this.powerUpFunctions[3] = () => {
 			this.vaisseau.clonageActive = false;
@@ -82,6 +91,7 @@ class PowerUpManager{
 			}, this).autoDestroy = true;
 		}
 		this.powerUpFunctions[4] = () => {
+			this.emitter.emit('research-level');
 			this.cristalRatio*=0.95;
 			this.grosCristalRatio*=0.97;
 			this.planeteDesertRatio*=0.99;

@@ -9,13 +9,7 @@ class LoadState extends Phaser.State {
         // logo.anchor.setTo(0.5,0.5);
         // logo.width = logo.height = Math.min(this.game.width, this.game.height);
 
-        window.WebFontConfig = {
-            
-            google: {
-                families: ['Anton']
-            }
-
-        };
+       
 
         this.interval = setInterval(LoadState.prototype.checkIfLoaded.bind(this), 500);
 
@@ -38,6 +32,7 @@ class LoadState extends Phaser.State {
         this.game.load.image("bulle-population", "assets/bulle-population.png");
         this.game.load.image("bulle-cristaux", "assets/bulle-cristaux.png");
         this.game.load.image("bulle-shop", "assets/bulle-shop.png");
+        
         this.game.load.script('webfont', '//ajax.googleapis.com/ajax/libs/webfont/1.4.7/webfont.js');        
         this.game.load.spritesheet("clone", "assets/spritesheet_clonage.png", 171, 303, 7);
         this.game.load.spritesheet("vaisseau_mere_sheet", "assets/vaisseau_mere_sheet.png", 838, 308, 3);
@@ -47,7 +42,7 @@ class LoadState extends Phaser.State {
     checkIfLoaded() {
         if(this.loaded) {
             clearInterval(this.interval);
-            this.game.state.start('play');
+            setTimeout(() => this.game.state.start('play'), 1000);
         }
     }
 

@@ -13,13 +13,30 @@ class PlayState extends Phaser.State {
                 this._vaisseau.laser.shoot(alien);
             });
         })
+        this._researchLevel = 0; // ne fait rien, juste pour compter le nb d'achat du pwp. 
               
-        this._vaisseau.addAlien(new Alien(game, this._vaisseau, this._filons))
+        this._vaisseau.addAlien(new Alien(this.game, this._vaisseau, this._filons))
 
         this._powerUpManager = new PowerUpManager(this.game, this._vaisseau, this._filons);
         this._shop = new Shop(this.game, this._powerUpManager)
         this._vaisseau.emitter.on('open-shop', () => { this._shop.open(); })
         //this._topbar = new TopBar(game,this._vaisseau, this._shop);
+
+        this._activePowersHud = new ActivePowersHUD(this.game, 15,15);
+
+        this._powerUpManager.emitter.on('alien-capacity', (c)=> {
+            this._activePowersHud.setAlienCapacity(c);
+        });
+        this._powerUpManager.emitter.on('laser-start', ()=> {
+            this._activePowersHud.setLaser(true);
+        });
+        this._powerUpManager.emitter.on('research-level', ()=> {
+            this._activePowersHud.setResearchLevel(++this._researchLevel);
+        });
+        this._powerUpManager.emitter.on('laser-stop', ()=> {
+            this._activePowersHud.setLaser(false);
+        });
+        this._activePowersHud.setAlienCapacity(Alien.capacite);
 
         this._vaisseau.emitter.on('gameover', () => { this.game.destroy(); window.location.reload(); })
        
