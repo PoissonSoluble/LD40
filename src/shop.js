@@ -30,7 +30,7 @@ class Shop {
 
 	destroy() {
 		for(let tr of this.shopDiv.querySelectorAll('tr.data_dynamic')) {
-			tr.remove();
+			this.shopDiv.querySelector('table').removeChild(tr);
 		}
 	}
 

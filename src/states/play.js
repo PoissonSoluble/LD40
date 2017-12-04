@@ -2,6 +2,7 @@ class PlayState extends Phaser.State {
 
     
     create() {
+        Alien.capacite = 5;
         this.space = this.game.add.tileSprite(0, 0, 1920, 1080, 'space');
         this.space.width = this.game.width;
         this.space.height = this.game.height;
