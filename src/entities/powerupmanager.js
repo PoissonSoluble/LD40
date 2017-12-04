@@ -47,6 +47,8 @@ class PowerUpManager{
 		}
 		else if(rand <= (ratio += this.planeteBleueRatio)){
 			this.filons.ajouterPlaneteBleue(x,y,this.vaisseau);
+		} else {
+			this.filons.ajouterCristal(x,y,this.vaisseau);
 		}
 	}
 
@@ -68,15 +70,15 @@ class PowerUpManager{
 		}
 		this.powerUpFunctions[3] = () => {
 			this.vaisseau.clonageActive = false;
-			this.shield = new Phaser.Sprite(this.game, this.game.width / 2, this.game.height / 2, 'shield');
-			this.shield.width = this.vaisseau._sprite.width+70;
-			this.shield.height = this.vaisseau._sprite.height+70;
-			this.shield.anchor.setTo(0.5);
-			this.shield.alpha = 0.3;
-			this.game.add.existing(this.shield)
+			let shield = new Phaser.Sprite(this.game, this.game.width / 2, this.game.height / 2, 'shield');
+			shield.width = this.vaisseau._sprite.width+70;
+			shield.height = this.vaisseau._sprite.height+70;
+			shield.anchor.setTo(0.5);
+			shield.alpha = 0.3;
+			this.game.add.existing(shield)
 			this.game.time.events.add(Phaser.Timer.SECOND * 10, () => {
 				this.vaisseau.clonageActive = true;
-				this.shield.destroy();
+				shield.destroy();
 			}, this).autoDestroy = true;
 		}
 		this.powerUpFunctions[4] = () => {
@@ -85,7 +87,6 @@ class PowerUpManager{
 			this.planeteDesertRatio*=0.99;
 			this.planetePoisonRatio = 0.75 * (100 - (this.cristalRatio + this.grosCristalRatio + this.planeteDesertRatio));
 			this.planeteBleueRatio = 0.25 * (100 - (this.cristalRatio + this.grosCristalRatio + this.planeteDesertRatio));
-			console.log(this.planetePoisonRatio + " " + this.planeteBleueRatio);
 		}
 	}
 
