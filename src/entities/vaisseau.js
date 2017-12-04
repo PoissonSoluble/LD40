@@ -44,7 +44,7 @@ class Vaisseau extends Phaser.Group {
         this._sprite.animations.add('reacteur', [0, 1, 2], 5, true);
         this._sprite.animations.play('reacteur');
 
-        this.graphics.alpha = .5;
+        this.graphics.alpha = .7;
         this.bulleCristaux = new BulleCristaux(game, this.x - 150, this.y -110);
         this.bulleShop = new BulleShop(game, this.x + 220, this.y - 100);
         this.bullePopulation = new BullePopulation(game, this.x + 50, this.y + 120);

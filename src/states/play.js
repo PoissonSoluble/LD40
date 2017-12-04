@@ -38,7 +38,7 @@ class PlayState extends Phaser.State {
         });
         this._activePowersHud.setAlienCapacity(Alien.capacite);
 
-        this._vaisseau.emitter.on('gameover', () => { this.game.destroy(); window.location.reload(); })
+        this._vaisseau.emitter.on('gameover', () => { this.game.state.start('gameover') })
        
     }
 
