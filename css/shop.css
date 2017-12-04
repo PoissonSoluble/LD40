@@ -28,10 +28,20 @@
     font-size: 1.2em;
 }
 
-#shop #money {
-    position: absolute;
-    top: 20px;
-    left: 20px;
+#shop #money-container {
+    
+}
+
+
+#shop #money-container img {
+    vertical-align: middle;
+    
+}
+
+
+#shop #money-container #money {
+    font-size: 1.3em;
+    display: inline;
 }
 
 
@@ -49,6 +59,9 @@
     min-width: 80px;
 }
 
+#shop th {
+    text-align: left;
+}
 
 #shop button {
     font-family: anton, arial;
