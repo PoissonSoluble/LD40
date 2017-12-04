@@ -18,9 +18,18 @@ class Shop {
 			row.emitter.on('buy', id => {
 				powerupManager.acheter(id)
 				update();
+				this._updateCristaux();
+				
 			});
 		}
 
+
+		this._updateCristaux();
+
+	}
+
+	_updateCristaux() {
+		this.shopDiv.querySelector('#money').innerHTML = this.powerupManager.vaisseau.cristaux;
 	}
 
 	_addPowerupTableRow({id, name, description, effet}) {
@@ -42,7 +51,7 @@ class Shop {
 		tr.appendChild(td1);tr.appendChild(td2);tr.appendChild(td3);
 		this.shopDiv.querySelector("table").appendChild(tr);
 
-		let setPrice = (p) => { btnBuy.innerHTML = p + ` <img src="assets/cristal.png">`; }
+		let setPrice = (p) => { btnBuy.innerHTML = p + ` <img src="assets/cristal_ressource.png">`; }
 		let setCurrentNb = (n) => { td2.innerHTML = n; }
 		setPrice(10);
 		setCurrentNb(0)
@@ -53,6 +62,7 @@ class Shop {
 	}
 
 	open() {
+		this._updateCristaux();
 		this.shopDiv.style.display="block";
 		this.game.paused = true;
 	}
