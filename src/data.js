@@ -18,6 +18,14 @@ Data.POWER_UPS = [
 	effect : "Mining ships capacity +5"
 },
 {
+	id : 4,
+	nom : "Cristal fundamental research",
+	base : 70,
+	exp : 1.2,
+	desc : "Conduct some research to find more resources.",
+	effect : "Raise the probability of finding bigger cristal sources."
+},
+{
 	id : 2,
 	nom : "Laser of sudden death",
 	base : 1000,
@@ -32,12 +40,5 @@ Data.POWER_UPS = [
 	exp : 1.5,
 	desc : "Your slaves - I mean - your employees cannot reproduces themselves for a short amount of time.",
 	effect : "No cloning for 10 seconds."
-},
-{
-	id : 4,
-	nom : "Cristal fundamental research",
-	base : 70,
-	exp : 1.2,
-	desc : "Conduct some research to find more resources.",
-	effect : "Raise the probability of finding bigger cristal sources."
-}];
+}
+];

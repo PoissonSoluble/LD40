@@ -18,6 +18,9 @@ class LoadState extends Phaser.State {
         this.game.load.image("systeme", "assets/systeme.png");
         this.game.load.image("pouvoir", "assets/pouvoir.png");
         this.game.load.image("shop", "assets/shop.png");
+        this.game.load.image("vaisseaux_titre", "assets/vaisseaux_titre.png");
+        this.game.load.image("logo_titre", "assets/logo_titre.png");        
+        this.game.load.image("vaissaux_mort", "assets/vaissaux_mort.png");        
         this.game.load.image("cristal", "assets/cristal.png");
         this.game.load.image("gros_cristal", "assets/gros_cristal.png");
         this.game.load.image("planete_bleu", "assets/planete_bleu.png");
@@ -42,7 +45,7 @@ class LoadState extends Phaser.State {
     checkIfLoaded() {
         if(this.loaded) {
             clearInterval(this.interval);
-            setTimeout(() => this.game.state.start('play'), 1000);
+            setTimeout(() => this.game.state.start('title'), 1000);
         }
     }
 
