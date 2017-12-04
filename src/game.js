@@ -12,6 +12,10 @@ class Game extends Phaser.Game {
         }
         super(w, h, Phaser.CANVAS, 'canvas', null, null, false);
 
+        window.addEventListener('resize', () => {
+            if(this.state.current != "play") window.location.reload();
+        })
+
         
         this.state.add('boot', BootState, true);
         this.state.add('load', LoadState, false);
