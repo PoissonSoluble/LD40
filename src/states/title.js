@@ -75,7 +75,23 @@ class TitleState extends Phaser.State {
 
 
         text.inputEnabled = true;
-        text.events.onInputDown.add(() => {this.game.state.start('play')});
+        text.events.onInputDown.add(() => {
+
+            try {
+
+                    
+                if(localStorage.getItem('ld40-tuto_effectue') != null) {
+                    this.game.state.start('play')                
+                } else {
+                    localStorage.setItem('ld40-tuto_effectue', '1');
+                    this.game.state.start('tutorial')  
+                }
+            } catch(e) {
+                this.game.state.start('play')
+            }
+
+        
+        });
         text2.inputEnabled = true;
         text2.events.onInputDown.add(() => {this.game.state.start('tutorial')});
     }

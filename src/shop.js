@@ -28,12 +28,19 @@ class Shop {
 
 	}
 
+	destroy() {
+		for(let tr of this.shopDiv.querySelectorAll('tr.data_dynamic')) {
+			tr.remove();
+		}
+	}
+
 	_updateCristaux() {
 		this.shopDiv.querySelector('#money').innerHTML = this.powerupManager.vaisseau.cristaux;
 	}
 
 	_addPowerupTableRow({id, name, description, effet}) {
 		let tr = document.createElement('tr');
+		tr.classList.add('data_dynamic')
 		let td1 = document.createElement('td'),
 		td2 = document.createElement('td'),
 		td3 = document.createElement('td');
