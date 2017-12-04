@@ -6,13 +6,25 @@ class PlayState extends Phaser.State {
         this.space = this.game.add.tileSprite(0, 0, 1920, 1080, 'space');
         this.space.width = this.game.width;
         this.space.height = this.game.height;
-        
+        this._score = 0;
         this._filons = new Filons(this.game);
         this._vaisseau = new Vaisseau(this.game, this._filons, this.game.width / 2, this.game.height / 2);
         this._vaisseau.emitter.on('newAlien', alien => {
             alien.emitter.on('clicked', () => {
                 this._vaisseau.laser.shoot(alien);
             });
+        });
+
+        this.textScore = this.game.add.text(this.game.width - 20, 20, "SCORE: 0", { 
+            font: "30px anton, arial", 
+            fill: "#dddddd", 
+            align: "right"
+        });
+        this.textScore.anchor.setTo(1, 0);
+
+        this._vaisseau.emitter.on('earnCrystal', amount => {
+            this._score += amount;
+            this.textScore.text = "SCORE: " + this._score;
         })
         this._researchLevel = 0; // ne fait rien, juste pour compter le nb d'achat du pwp. 
               
@@ -39,7 +51,7 @@ class PlayState extends Phaser.State {
         });
         this._activePowersHud.setAlienCapacity(Alien.capacite);
 
-        this._vaisseau.emitter.on('gameover', () => { this._shop.destroy(); this.game.state.start('gameover') })
+        this._vaisseau.emitter.on('gameover', () => { this._shop.destroy(); this.game.state.start('gameover', true, false, {score: this._score}) })
        
     }
 

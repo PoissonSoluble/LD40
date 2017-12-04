@@ -52,6 +52,11 @@ class Vaisseau extends Phaser.Group {
         this.clonageActive = true;
 
     }
+
+    addCristaux(v) {
+        this.cristaux += v;
+        this.emitter.emit('earnCrystal', v);
+    }
     
     get emitter() {
         return this._emitter;

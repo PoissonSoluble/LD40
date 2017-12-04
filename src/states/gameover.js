@@ -4,7 +4,6 @@ class GameOverState extends Phaser.State {
             this.space = this.game.add.tileSprite(0, 0, 1920, 1080, 'space');
             this.space.width = this.game.width;
             this.space.height = this.game.height;
-    
             let logo = this.game.add.sprite(0, 0, 'dead');
             logo.anchor.setTo(0.5, 0);
             let vaissal = this.game.add.sprite(0, 0, 'vaissaux_mort');
@@ -84,6 +83,24 @@ class GameOverState extends Phaser.State {
                 align: "center"
             });
             text3.anchor.setTo(0.5);
+
+            this.textScore = this.game.add.text(this.game.width/2, 290, "TOTAL MINED: ", { 
+                font: "40px anton, arial", 
+                fill: "#ffffff", 
+                align: "center"
+            });
+            this.textScore.anchor.setTo(0.5);
+            
         }
+
+        init(data) {
+            this._score = data.score;
+            
+        }
+
+        update() {
+            this.textScore.text = "TOTAL MINED: " + this._score;
+        }
+
     
     }
