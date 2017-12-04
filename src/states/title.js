@@ -5,6 +5,24 @@ class TitleState extends Phaser.State {
         this.space = this.game.add.tileSprite(0, 0, 1920, 1080, 'space');
         this.space.width = this.game.width;
         this.space.height = this.game.height;
+        this.muted = false;
+        this.music = document.querySelector('#bgmusic')
+        this.mute = this.game.add.text(this.game.width - 20, 20, "MUTE", { 
+            font: "30px anton, arial", 
+            fill: "#ffffff", 
+            align: "right"
+        });
+        this.mute.anchor.setTo(1, 0);
+        this.mute.inputEnabled = true;
+        this.mute.events.onInputDown.add(() => {
+            this.muted = !this.muted;
+            this.mute.text = this.muted ? "UNMUTE" : "MUTE";
+            if(this.muted) {
+                this.music.volume = 0;
+            } else{
+                this.music.volume = 0.8;
+            }
+        })
 
         let logo = this.game.add.sprite(0, 0, 'logo_titre');
         logo.anchor.setTo(0.5, 0);
