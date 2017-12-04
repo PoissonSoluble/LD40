@@ -26,7 +26,8 @@ class PowerUpManager{
 		let x = -1;
 		let y = -1;
 		
-		while(x == -1 || y == -1 || Phaser.Rectangle.intersects(new Phaser.Rectangle(x, y, 200, 200), this.vaisseau.getBounds())) {
+		while(x == -1 || y == -1 || Phaser.Rectangle.intersects(
+			new Phaser.Rectangle(x, y-50, 100, 100), this.vaisseau.getBounds())) {
 			x = this.game.rnd.integerInRange(50, this.game.width-50);
 			y = this.game.rnd.integerInRange(100, this.game.height-50);
 		}
@@ -48,9 +49,10 @@ class PowerUpManager{
 		}
 		else if(rand <= (ratio += this.planeteBleueRatio)){
 			this.filons.ajouterPlaneteBleue(x,y,this.vaisseau);
-		} else {
-			this.filons.ajouterCristal(x,y,this.vaisseau);
-		}
+		} 
+		// else {
+		// 	this.filons.ajouterCristal(x,y,this.vaisseau);
+		// }
 	}
 
 	getPowerUps(){
@@ -92,8 +94,8 @@ class PowerUpManager{
 		}
 		this.powerUpFunctions[4] = () => {
 			this.emitter.emit('research-level');
-			this.cristalRatio*=0.95;
-			this.grosCristalRatio*=0.97;
+			this.cristalRatio*=0.99;
+			this.grosCristalRatio*=0.99;
 			this.planeteDesertRatio*=0.99;
 			this.planetePoisonRatio = 0.75 * (100 - (this.cristalRatio + this.grosCristalRatio + this.planeteDesertRatio));
 			this.planeteBleueRatio = 0.25 * (100 - (this.cristalRatio + this.grosCristalRatio + this.planeteDesertRatio));
