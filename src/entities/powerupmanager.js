@@ -73,11 +73,15 @@ class PowerUpManager{
 			// IMA FIRIN MAH LAZAAAA
 			this.vaisseau.laser.activate();
 			this.emitter.emit('laser-start');
-			this.game.time.events.add(10000, () => { 
-				console.log('its the end')
+
+			let timer = this.game.time.create(false);
+			timer.loop(10000, ()=> {
 				this.vaisseau.laser.disable(); 
 				this.emitter.emit('laser-stop');
-			}, this).autoDestroy = true;
+				timer.destroy();
+			});
+			timer.start();
+
 		}
 		this.powerUpFunctions[3] = () => {
 			this.vaisseau.clonageActive = false;
@@ -87,10 +91,14 @@ class PowerUpManager{
 			shield.anchor.setTo(0.5);
 			shield.alpha = 0.3;
 			this.game.add.existing(shield)
-			this.game.time.events.add(Phaser.Timer.SECOND * 10, () => {
+
+			let timer = this.game.time.create(false);
+			timer.loop(10000, ()=> {
 				this.vaisseau.clonageActive = true;
 				shield.destroy();
-			}, this).autoDestroy = true;
+				timer.destroy();
+			});
+			timer.start();
 		}
 		this.powerUpFunctions[4] = () => {
 			this.emitter.emit('research-level');
