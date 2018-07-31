@@ -10,7 +10,7 @@
 
 ### ![alien](assets/alien.png) Contributors
 * Code: 
-  * Vincent Duplessis
+  * [Vincent Duplessis](https://github.com/PoissonSoluble/)
   * Pierre Gabon
   * [Yann Pellegrini](https://yann-p.fr)
 * Art: Kevin Pieplu
